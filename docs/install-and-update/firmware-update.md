@@ -42,16 +42,7 @@ A GUI will launch. Select the correct firmware and the target device's COM port,
 FOR ALL: 
 
 - Download [Arduino 1.8.X](http://arduino.cc/en/Main/Software#toc3) non-admin / zip, extract the zip folder and save the extracted folder somewhere permanent on your PC.
-- Download the firmware file to update. Firmware is an Arduino [sketch](https://www.arduino.cc/en/Tutorial/Sketch), hosted on the Sanworks Github account:
-    - [Bpod State Machine](https://github.com/sanworks/Bpod_StateMachine_Firmware) (select your machine from the /Preconfigured/ folder)
-- [Analog Output Module](https://github.com/sanworks/Bpod_AnalogOutput_Firmware)
-- [Analog Input Module](https://github.com/sanworks/Bpod_AnalogInput_Firmware)
-- [DDS Module](https://github.com/sanworks/Bpod_DDS_Firmware)
-- [Rotary Encoder Module](https://github.com/sanworks/Bpod_RotaryEncoder_Firmware)
-- [Valve Driver Module](https://github.com/sanworks/Bpod_ValveDriver_Firmware)
-- [I2C Messenger Module](https://github.com/sanworks/Bpod_I2CMessenger_Firmware)
-- [SNES Module](https://github.com/sanworks/Bpod_SNES_Firmware)
-    - [Example firmware](https://github.com/sanworks/Bpod_Gen2/tree/master/Examples/Firmware) for Arduino / Teensy Shields
+- Download the firmware file to update from [this list](firmware-repo-list.md). Firmware is an Arduino [sketch](https://www.arduino.cc/en/Tutorial/Sketch).
 
 Next, continue to specific instructions for the device you want to update:
 

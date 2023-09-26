@@ -119,7 +119,7 @@ markdown_extensions:
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
 
-plugins: 
+plugins:
   - search
 
 theme:
@@ -136,8 +136,8 @@ theme:
   # Palette toggle for dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: green
-      accent: light green
+      primary: indigo
+      accent: blue
       toggle:
         icon: material/lightbulb-outline
         name: Switch to light mode
@@ -145,8 +145,8 @@ theme:
     # Palette toggle for light mode
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: green
-      accent: light green
+      primary: indigo
+      accent: blue
       toggle:
         icon: material/lightbulb
         name: Switch to dark mode
