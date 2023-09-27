@@ -46,7 +46,6 @@ FOR ALL: 
 
 Next, continue to specific instructions for the device you want to update:
 
-<!-- todo: fix links here -->
 [Modules powered by Arduino Due](./arduinodue-update.md) (State Machine v0.5-1.0)
 
 [Modules powered by Teensy 3.X and 4.X](./teensy3x-update.md) (State Machine v2, 2.5 and 2+, Analog Output, Analog Input, DDS, HiFi, Ethernet, Rotary Encoder, Port Array, Valve Driver v2, Examples using Teensy Shield)

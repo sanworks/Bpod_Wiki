@@ -5,8 +5,8 @@ Version 1 was released in 2017. It is powered by PJRC [Teensy 3.6](http://www.go
 
 Version 2 was released in 2023. It is powered by PJRC [Teensy 4.1](https://www.google.com/url?q=https%3A%2F%2Fwww.pjrc.com%2Fstore%2Fteensy41.html&sa=D&sntz=1&usg=AOvVaw0Ix4K9Z2Inj9R6DoE9DxJP).
 
-Several firmware versions are available for the device:
-<!-- todo: links to firmwares -->
+Several firmware versions are [available](../install-and-update/firmware-repo-list.md) for the device:
+
 - WavePlayer firmware (default) plays from a programmable library of sampled waveforms on trigger.
 - AudioPlayer firmware is specialized for stereo sound\*, sampled at up to 96kHz.
 - PulsePal firmware plays parametric waveforms using the Pulse Pal Parameters.
