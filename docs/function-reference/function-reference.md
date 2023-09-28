@@ -21,7 +21,7 @@ This page documents user-facing MATLAB functions in the Bpod_Gen2 repository.
   <div style="flex: 1; padding: 1em; margin-right: 1em;">
 
     <b>Initialization</b><br>
-    <a href="../bpodsystem-functions">Bpod()</a>
+    <a href="../initialization">Bpod()</a>
     <br><br>
 
     <b>BpodSystem fields</b><br>

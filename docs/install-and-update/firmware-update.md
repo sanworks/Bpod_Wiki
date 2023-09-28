@@ -1,9 +1,9 @@
-# Firmware update
+# Update Procedure
 
 ## Automatic
 
 !!! note
-    An experimental auto-updater is included with the latest Bpod software. It is not available on all platforms, and as new software it carries the risk of malfunction in your particular MATLAB + PC configuration. If you choose to try it,
+    An experimental auto-updater is included with the latest Bpod software. It is not available on all platforms, and as new software it carries the risk of malfunction in your particular MATLAB + PC configuration. If you choose to try it, follow the steps below
 
 - To update the firmware of your state machine:
     - Ensure the Bpod software is [installed](./software-update.md)
