@@ -1,5 +1,5 @@
 # Pulse Pal
-![Alt text](../images/pulsepal.jpg)
+<img src="/images/pulsepal.jpg" alt="drawing" width="500"/>
 
 Bpod can control neural stimulation by triggering Pulse Pal, an open source pulse train generator for physiology, optogenetics and behavior. Pulse Pal is developed and maintained by Sanworks LLC.
 

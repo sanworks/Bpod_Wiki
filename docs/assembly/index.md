@@ -1,6 +1,3 @@
----
-icon: material/hammer
----
 # General build guide
 The Assembly section contains supporting information for assembling Bpod state machines, peripheral modules, and other peripheral hardware.
 
@@ -9,4 +6,4 @@ Devices are assembled by soldering components from the bill of materials to thei
 <!-- todo: improve
  -->
 
-The different devices are accessed from the navigation bar on the left. 
+The different devices are accessed from the navigation bar on the left.

@@ -18,7 +18,8 @@ Other example protocols are available in [/Bpod_Gen2/Examples/Protocols](https:/
 !!! note
     When a protocol is run, Bpod will add the protocol folder into [MATLAB's Path](https://mathworks.com/help/matlab/matlab_env/what-is-the-matlab-search-path.html) where the protocol m-file is stored.
 
-### Protocol Setup (code that runs before the behavior session starts)
+### Protocol Setup
+(code that runs before the behavior session starts)
 
 - On the next line of your protocol file, add `global BpodSystem`
   - This makes the BpodSystem object visible in the the MyProtocol function's [workspace](http://www.google.com/url?q=http%3A%2F%2Fwww.mathworks.com%2Fhelp%2Fmatlab%2Fmatlab_prog%2Fbase-and-function-workspaces.html&sa=D&sntz=1&usg=AOvVaw3WYVW6iVOMmYfIApDt2HVO).
@@ -54,14 +55,14 @@ BpodParameterGUI('init', S);
 
 Define a trial type for each possible behavioral response, and make a list of the future trial types for your session.
 ```matlab
-% Trial Types: 1 = left, 2 = right, both sides equally probable and randomly interleaved 
-TrialTypes = ceil(rand(1,1000)*2); 
+% Trial Types: 1 = left, 2 = right, both sides equally probable and randomly interleaved
+TrialTypes = ceil(rand(1,1000)*2);
 ```
 
 If you will deliver liquid reward to the port, determine how long the valve needs to open to dispense the intended liquid volume with [GetValveTimes](../function-reference/liquid-calibration.md#getvalvetimes)
 ```matlab
 R = GetValveTimes(S.RewardAmount, [1 3]); % Return the valve-open duration in seconds for valves 1 and 3
-LeftValveTime = R(1); RightValveTime = R(2); 
+LeftValveTime = R(1); RightValveTime = R(2);
 ```
 
 Initialize any plots and plugins for online visualization and peripheral device control. Plugins are in /Bpod/Functions/Plugins.
@@ -72,7 +73,8 @@ BpodNotebook('init'); % Launches an interface to write notes about behavior and 
 !!! note
     It is recommended to initialise figures at the end of the startup because if an error is encountered (e.g. failure to configure a module) after figures are created then you will be left with windows to close manually.
 <!-- This is some that could change in the future if a protocol error handling feature is introduced -->
-### Main Loop (runs once each trial until some conditions are met, or the experimenter stops the session from the console)
+### Main Loop
+(runs once each trial until some conditions are met, or the experimenter stops the session from the console)
 
 Create a loop with some condition for ending the session
 ```matlab
@@ -84,26 +86,26 @@ If you are using the ParameterGUI plugin, synchronize it (display updated parame
 S = BpodParameterGUI('sync', S);
 ```
 
-Set up the variable parts of the current trial's [state matrix](../user-guide/index.md#state-matrix). 
+Set up the variable parts of the current trial's [state machine description](state-machine-concept.md#introduction-to-the-bpod-state-machine).
 ```matlab
 switch TrialTypes(currentTrial)
     case 1
-        LeftPortAction = 'Reward'; RightPortAction = 'Timeout'; 
+        LeftPortAction = 'Reward'; RightPortAction = 'Timeout';
         Stimulus = {'PWM1', 255}; ValveCode = 1; ValveTime = LeftValveTime;
     case 2
-        LeftPortAction = 'Punish'; RightPortAction = 'Reward'; 
+        LeftPortAction = 'Punish'; RightPortAction = 'Reward';
         Stimulus = {'PWM3', 255}; ValveCode = 4; ValveTime = RightValveTime;
 end
 ```
 
-Construct the current trial's state matrix using the [NewStateMatrix](../function-reference/state-machine-creation.md#newstatemachine) and [AddState](../function-reference/state-machine-creation.md#addstate) functions:
+Construct the current trial's state machine description using the [NewStateMachine()](../function-reference/state-machine-creation.md#newstatemachine) and [AddState()](../function-reference/state-machine-creation.md#addstate) functions:
 ```matlab
-sma = NewStateMatrix(); % Create a blank matrix to define the trial's finite state machine
+sma = NewStateMachine(); % Create a struct to define the trial's finite state machine
 
 sma = AddState(sma, 'Name', 'WaitForPoke', ...
     'Timer', 0,...
     'StateChangeConditions', {'Port2In', 'DeliverStimulus'},...
-    'OutputActions', {}); 
+    'OutputActions', {});
 
 sma = AddState(sma, 'Name', 'DeliverStimulus', ...
     'Timer', 0,...
@@ -113,26 +115,26 @@ sma = AddState(sma, 'Name', 'DeliverStimulus', ...
 sma = AddState(sma, 'Name', 'WaitForResponse', ...
     'Timer', S.ResponseTimeAllowed,...
     'StateChangeConditions', {'Port1In', LeftPokeAction, 'Port3In', RightPokeAction, 'Tup', 'exit'},...
-    'OutputActions', Stimulus); 
+    'OutputActions', Stimulus);
 
 sma = AddState(sma, 'Name', 'Reward', ...
     'Timer', ValveTime,...
     'StateChangeConditions', {'Tup', 'end'},...
-    'OutputActions', {'ValveState', ValveCode}); 
+    'OutputActions', {'ValveState', ValveCode});
 
 sma = AddState(sma, 'Name', 'Timeout', ...
     'Timer', S.GUI.TimeoutDuration,...
     'StateChangeConditions', {'Tup', 'exit'},...
-    'OutputActions', {}); 
+    'OutputActions', {});
 ```
 
-Send the state matrix to the Bpod device with the [SendStateMatrix](../function-reference/running-statemachine.md#sendstatemachine) function:
+Send the state machine description to the Bpod device with the [SendStateMachine()](../function-reference/running-statemachine.md#sendstatemachine) function:
 ```matlab
-SendStateMatrix(sma);
+SendStateMachine(sma);
 ```
 Run the trial's finite state machine, and return the measured timecourse of events and states. The flow of states will be controlled by the Bpod device, and the PC/MATLAB will act as a passive observer until the trial is complete (but see [soft codes](../function-reference/bpodsystem-fields.md#softcodehandlerfunction))
 ```matlab
-RawEvents = RunStateMatrix;
+RawEvents = RunStateMachine();
 ```
 Add this trial's raw data to a human-readable data struct using the [AddTrialEvents](../function-reference/running-statemachine.md#addtrialevents) function.
 

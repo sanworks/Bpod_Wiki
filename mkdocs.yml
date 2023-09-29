@@ -7,6 +7,7 @@ edit_uri: https://github.com/ogeesan/bpod-docs-testing/tree/main/docs/  # where 
 nav:
   - Home: index.md
   - Hardware:
+      - assembly/index.md
       - State Machines:
         - assembly/state-machine-assembly-0_5.md
         - assembly/state-machine-assembly-0_9-1_0.md
@@ -45,12 +46,42 @@ nav:
       - install-and-update/installing-bpod.md
       - install-and-update/software-update.md
     - Operation:
+      - user-guide/state-machine-concept.md
       - user-guide/bpod-gui.md
-
     - Programming:
       - user-guide/protocol-development.md
-      - function-reference/function-reference.md
+      - Function Reference: # IMPORTANT NOTE: New functions are not automatically added to the function-reference/index.md page!
+                            # Please add them manually, using the file's convention.
+        - function-reference/index.md
+        - function-reference/initialization.md
+        - function-reference/bpodsystem-fields.md
+        - function-reference/bpodsystem-functions.md
+        - function-reference/state-machine-creation.md
+        - function-reference/running-statemachine.md
+        - function-reference/running-protocol.md
+        - function-reference/data-storage.md
+        - function-reference/general-plugins.md
+        - function-reference/serial-message-setup.md
+        - function-reference/module-matlab-usb.md
+        - function-reference/module-matlab-fsm.md
+        - function-reference/pc-fsm-softcodes.md
+        - function-reference/liquid-calibration.md
+      - Bpod Module APIs:
+        - module-documentation/index.md
+        - module-documentation/analog-input-module.md
+        - Analog Output Module:
+          - module-documentation/waveplayer.md
+          - module-documentation/audioplayer.md
+          - module-documentation/pulsepal-module.md
+        - module-documentation/hifi-module.md
+        - module-documentation/rotary-encoder-module.md
+        - module-documentation/dds-module.md
+        - module-documentation/I2C-messenger-module.md
+      - Example Code:
+        - user-guide/example-code.md
+
     - Extensions:
+      - user-guide/using-bonsai.md
       - user-guide/using-bcontrol.md
   - Serial Interfaces:
     - serial-interfaces/fsm-serial-interface-v18.md
@@ -80,31 +111,11 @@ nav:
 #   - Functions:
 #     - function-reference/index.md
 #     - Function Reference:
-#       - function-reference/initialization.md
-#       - function-reference/bpodsystem-fields.md
-#       - function-reference/bpodsystem-functions.md
-#       - function-reference/state-machine-creation.md
-#       - function-reference/running-statemachine.md
-#       - function-reference/running-protocol.md
-#       - function-reference/data-storage.md
-#       - function-reference/general-plugins.md
-#       - function-reference/serial-message-setup.md
-#       - function-reference/module-matlab-usb.md
-#       - function-reference/module-matlab-fsm.md
-#       - function-reference/pc-fsm-softcodes.md
-#       - function-reference/liquid-calibration.md
-#       - function-reference/updating-bpod.md
+
 #   - Modules:
 #     - module-documentation/index.md
 #     - Plugins:
-#       - module-documentation/analog-input-module.md
-#       - module-documentation/audioplayer.md
-#       - module-documentation/dds-module.md
-#       - module-documentation/hifi-module.md
-#       - module-documentation/I2C-messenger-module.md
-#       - module-documentation/pulsepal-module.md
-#       - module-documentation/rotary-encoder-module.md
-#       - module-documentation/waveplayer.md
+
 #     - Serial Interfaces:
 
 #   - Assembly:
@@ -123,6 +134,7 @@ not_in_nav: |
   /install-and-update/teensy3x-update.md
   /module-documentation/readme.md
   /serial-interfaces/fsm-serial-interface-v17.md
+  /function-reference/updating-bpod.md
 
 
 markdown_extensions:
