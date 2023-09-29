@@ -362,7 +362,7 @@ Plots correct sides and trial outcomes for a two-sided decision task.
 
 - Future trials are indicated with filled blue circles.
 - The current trial is indicated with a black cross.
-- Correct trials are indicated in green. Filled circles indicate rewarded trials, unfilled circles indicate unrewarded trials..
+- Correct trials are indicated in green. Filled circles indicate rewarded trials, unfilled circles indicate unrewarded trials.
 - Error trials are indicated in red. Filled circles indicate punished trials, unfilled circles indicate unpunished trials.
 - Trials with no decision response are indicated as unfilled blue circles.
 
@@ -516,11 +516,11 @@ Displays the total amount of liquid reward delivered in the current session.
 
 **Syntax**
 On first call:
-```
+```matlab
 TotalRewardDisplay('init');
 ```
 On subsequent calls:
-```
+```matlab
 TotalRewardDisplay('add', RewardAmount);
 ```
 

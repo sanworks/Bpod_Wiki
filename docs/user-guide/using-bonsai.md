@@ -1,6 +1,6 @@
 # Using Bonsai
 
-Bonsai Integration
+Bonsai can be integrated with Bpod.
 
 [Bonsai](https://bonsai-rx.org/) is an open source software tool for processing data streams, developed by [Goncalo Lopes](https://neurogears.org/about-us/).
 
@@ -19,7 +19,7 @@ Note: From the Bpod console, click the Info (spyglass) icon to view the identity
 
 When bytes in range [0x1, 0x15] are sent from Bonsai's SerialWrite sink to the state machine's App serial port, the bytes are interpreted by the state machine as events App_SoftCode0 to App_SoftCode14. To handle these events, add them to the 'StateChangeConditions' section of a state. The following example state proceeds to the next state when byte 0x2 arrives from Bonsai:
 
-```
+```matlab
 sma = AddState(sma, 'Name', 'WaitForBonsai', ...
 'Timer', 0,...
 'StateChangeConditions', {'APP_SoftCode2', 'MyNextState'},...
@@ -29,9 +29,9 @@ sma = AddState(sma, 'Name', 'WaitForBonsai', ...
 ### Bpod State Machine --> Bonsai
 
 Bytes in range 1-255 can be sent to Bonsai's SerialRead source from any state using:
-ByteToSend = 3; % Send byte 0x3 to Bonsai
 
-```
+```matlab
+ByteToSend = 3; % Send byte 0x3 to Bonsai
 sma = AddState(sma, 'Name', 'SendToBonsai', ...
 'Timer', 0,...
 'StateChangeConditions', {'Tup', 'MyNextSTate'},...
