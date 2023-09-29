@@ -206,3 +206,4 @@ theme:
 
 extra_css:
   - https://fonts.googleapis.com/css2?family=Aldrich
+  - extra.css
