@@ -19,7 +19,7 @@ It has the following fields:
     - Use these with the `SetCondition()` function
 - nOutputChannels: the total number of unique output channels
 - OutputChannelNames: A character string naming each output channel
-- Use these with the `AddState()` and `SetGlobalTimer()` functions
+    - Use these with the `AddState()` and `SetGlobalTimer()` functions
 - MaxStates: The maximum number of states supported by the connected state machine
 
 **Example**
@@ -90,13 +90,7 @@ end
 ### ProtocolSettings
 **Description**
 
-Saves the struct BpodSystem.ProtocolSettings to disk.
-
-- The settings in BpodSystem.ProtocolSettings are saved over the file targeted when selecting settings in the launch manager.
-
-**Syntax**
-
-`SaveProtocolSettings()`
+ProtocolSettings contains the settings struct selected by the user when launching a protocol.
 
 **Parameters**
 

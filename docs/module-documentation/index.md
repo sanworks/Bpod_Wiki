@@ -7,11 +7,11 @@ As a general expansion framework, 3 (or more) of the serial ports of the state m
 ## Module documentation
 Each module has three pieces of documentation.
 
-1. Hardware: located in Assembly > Modules, hardware specifications and the bill of materials required for construction.
-2. Serial interface: located in Modules > Serial Interfaces, USB/serial port communication specifications
-3. Plugin: located in Modules > Plugins, plugins/class/API for programmatic module interaction
+1. Hardware: located in Hardware > Modules, hardware specifications and the bill of materials required for construction.
+2. Serial interface: located in 'Serial Interfaces' above, USB/serial port communication specifications
+3. USB interface: located in MATLAB Software > Bpod Module APIs, plugins/class/API for programmatic module interaction via USB
 
-In most cases, configuration of a module at the start of a session involves the use of the plugin, while actions performed during a trial are triggered using serial messages from the state machine.
+In most cases, configuration of a module at the start of a session involves the use of the plugin, while time-critical actions performed during a trial are triggered using serial messages from the state machine.
 
 
 ## General explanation of module architecture
@@ -37,9 +37,7 @@ arcom <-- Serial message via USB --> moduleserial
 moduleserial <-- Information exchange --> arduino
 ```
 
-ArCOM is a library for Arduino developed by Sanworks to simplify data transaction between Arduinos with other Arduinos and computers. Rather than working directly in binary, ArCOM makes it easy to send and receive bytes from a module. The rationale for its development can be found [here](https://sanworks.io/news/viewArticle?articleID=ArCOM1).
-
-<!-- but why use this instead of the Serial class? -->
+ArCOM is a library for Arduino developed by Sanworks to simplify data transactions between Arduino, MATLAB and Python. Rather than working directly in binary, ArCOM makes it easy to send and receive arrays of different data types from a module. The rationale for its development can be found [here](https://sanworks.io/news/viewArticle?articleID=ArCOM1).
 
 For example, modules that play a stimulus are often sent two bytes, byte `'P'` to signify that the instruction is to play, and a second byte to specify which pre-loaded stimulus to play (e.g. `['P' 1]`). Communication of all forms is performed using ArCOM, and the plugins (which are [classes](https://www.mathworks.com/help/matlab/object-oriented-programming.html)) are used to make this easily accessible within the protocol file's programming language.
 
@@ -54,6 +52,6 @@ To understand this sequence more closely, read the [example in-depth explanation
 - The state machine sends UART serial transmissions to modules using an RS485 IC at each end of the ethernet cable. This employs differential signaling over the Ethernet cable's twisted wire pairs, to make the digital messages more robust against noise.
 
 ## Building your own module/integrating existing Arduino system
-The [Bpod Arduino Shield](../assembly/arduino-shield-gen2-assembly.md) is a simple circuit board used to interface the serial ports on the state machine and the UART on Arduino boards (M0, Zero, Due, Leonardo, Adafruit MetroM4).
+The [Bpod Arduino Shield](../assembly/arduino-shield-gen2-assembly.md) is a simple circuit board used to interface the serial ports on the state machine and the UART on Arduino boards (Zero, Due, Adafruit Metro M4).
 
-It will help to become familiar with the [Arduino language](http://www.google.com/url?q=http%3A%2F%2Farduino.cc%2Fen%2FReference%2FHomePage&sa=D&sntz=1&usg=AOvVaw1v-cPDNL0l0ua0s9yO_xvD), an excellent intro for which is located [here](https://www.google.com/url?q=https%3A%2F%2Flearn.sparkfun.com%2Ftutorials%2Fwhat-is-an-arduino&sa=D&sntz=1&usg=AOvVaw1od5YgunQFQgRDuuzRaBOE).
+It will help to become familiar with the [Arduino language](https://www.arduino.cc/reference/en/), an excellent intro for which is located [here](https://www.google.com/url?q=https%3A%2F%2Flearn.sparkfun.com%2Ftutorials%2Fwhat-is-an-arduino&sa=D&sntz=1&usg=AOvVaw1od5YgunQFQgRDuuzRaBOE).
