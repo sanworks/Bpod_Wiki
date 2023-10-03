@@ -1,6 +1,6 @@
 # Creating a state machine
 !!! note
-    More examples of state machine creation can be found in the Examples/ folder of the repository. [Examples/State Machines/](https://github.com/sanworks/Bpod_Gen2/tree/master/Examples/State%20Machines) contains minimal (building block) examples, while [Examples/Protocols/](https://github.com/sanworks/Bpod_Gen2/tree/master/Examples/Protocols) contains complete examples of a protocol state matrix construction.
+    More examples of state machine creation can be found in the Examples/ folder of the repository. [Examples/State Machines/](https://github.com/sanworks/Bpod_Gen2/tree/master/Examples/State%20Machines) contains minimal (building block) examples, while [Examples/Protocols/](https://github.com/sanworks/Bpod_Gen2/tree/master/Examples/Protocols) contains complete behavioral tasks showcasing state matrix construction for different applications.
 
 ### `NewStateMachine()`
 **Description**

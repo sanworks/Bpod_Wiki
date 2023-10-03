@@ -1,5 +1,5 @@
 # DDS Module
-![Alt text](../images/dds-module.png)
+<img src="../../images/dds-module.png" alt="drawing" width="500"/><br><br>
 The DDS (direct digitzal synthezier) module outputs a continuous sine or triangle wave, with frequency and amplitude modulated by the state machine, a separate Bpod module or both in parallel.
 
 Specs:

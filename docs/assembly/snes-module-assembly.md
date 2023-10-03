@@ -1,6 +1,6 @@
 # SNES Module
-![Alt text](../images/snes-module.png)
-![Alt text](../images/snes-module-with-gamepad.png)
+<img src="../../images/snes-module.jpg" alt="drawing" width="500"/><br><br>
+<img src="../../images/snes-module-with-gamepad.png" alt="drawing" width="500"/><br><br>
 
 The SNES module interfaces a Super Nintendo controller with Bpod. This provides a convenient button array for psychophysics tasks using human subjects. Pressing or releasing each of the gamepad's buttons generates a unique event that can be handled by the state machine. The gamepad's button states are read by the module at ~20kHz and detected events drive the state machine in ~100 microseconds, providing excellent temporal resolution on button press events. To validate the module, we dissected the popular [aftermarket controller](https://www.google.com/url?q=https%3A%2F%2Fwww.newegg.com%2FProduct%2FProduct.aspx%3FItem%3D9SIAD2K5AT9617&sa=D&sntz=1&usg=AOvVaw02pqZpxsn5tU4DIM8k7ocJ) pictured above, and soldered leads to the button footprint on its PCB, allowing us to create button press events with known onset times.
 

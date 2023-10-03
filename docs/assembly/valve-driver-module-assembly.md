@@ -1,6 +1,9 @@
 # Valve Driver Module
-![Alt text](../images/valve-driver-module.png)
+<img src="../../images/valve-driver-module.png" alt="drawing" width="500"/><br><br>
 Version 1, released November 2017
+
+<img src="../../images/valve-module-2.jpg" alt="drawing" width="500"/><br><br>
+Version 2, released July 2023
 
 The valve driver module controls 8 solenoid valves. Valve currents are galvanically isolated from control logic circuitry.
 
