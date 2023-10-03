@@ -1,6 +1,9 @@
 # Analog Input Module
-![Alt text](../images/analog-input-module-v1.png)![Alt text](../images/analog-input-module-v2.png)![Alt text](../images/analog-input-module-display-example.png)
-<!-- todo: use html to size images -->
+<img src="../../images/analog-input-module-v1.png" alt="drawing" width="500"/><br>
+Version 1, released November 2017<br><br>
+<img src="../../images/analog-input-module-v2.png" alt="drawing" width="500"/><br>
+Version 2, released May 2023<br><br>
+<img src="../../images/analog-input-module-display-example.png" alt="drawing" width="500"/><br><br>
 The analog input module records voltage waveforms from 8 input channels, and sends voltage threshold crossing events to the Bpod state machine.
 
 Firmware for the analog input module is available [here](https://github.com/sanworks/Bpod_AnalogInput_Firmware).

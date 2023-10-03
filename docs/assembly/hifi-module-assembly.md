@@ -1,4 +1,5 @@
 # HiFi Module
+<img src="../../images/bpod-hifi.jpg" alt="drawing" width="500"/><br><br>
 The Bpod HiFi Module stores audio waveforms and play them back on trigger.
 
 Audio waveforms are rendered by [HiFiBerry](https://www.google.com/url?q=https%3A%2F%2Fwww.hifiberry.com%2F&sa=D&sntz=1&usg=AOvVaw0MmWWvePk-wEiPqorUFfaO) [DAC2 Pro](https://www.google.com/url?q=https%3A%2F%2Fwww.hifiberry.com%2Fdocs%2Fdata-sheets%2Fdatasheet-dac2-pro%2F&sa=D&sntz=1&usg=AOvVaw2UpAYi7CokH-lqQp_sSOAo) and [DAC2 HD](https://www.google.com/url?q=https%3A%2F%2Fwww.hifiberry.com%2Fdocs%2Fdata-sheets%2Fdatasheet-dac-hd%2F&sa=D&sntz=1&usg=AOvVaw15LwCjfSITr3cyBx33L5hl) cards.

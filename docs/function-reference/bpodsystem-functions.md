@@ -14,8 +14,8 @@ Throws an error if a given Bpod module is not present.
 **Parameters**
 
 - `moduleNames`: a character array containing the name of the module. A cell array of strings may also be provided to assert multiple modules. Note: The names of connected modules are given in BpodSystem.Modules
-- `USBPaired`: optional, an array of 1s and 0s with one value for each module in moduleNames. 
-    - 1 = the module must be paired with its USB serial port. 
+- `USBPaired`: optional, an array of 1s and 0s with one value for each module in moduleNames.
+    - 1 = the module must be paired with its USB serial port.
     - 0 = the module does not have to be paired.
 
 **Return**
@@ -40,7 +40,7 @@ Enables or disables the status indicator LED on the Bpod finite state machine.
 
 **Syntax**
 ```matlab
-BpodSystem.setStatusLED(status) 
+BpodSystem.setStatusLED(status)
 ```
 
 **Parameters**
@@ -65,7 +65,7 @@ BpodSystem.setStatusLED(0);
 
 Launches a viewer for Flex I/O channels configured as analog input.
 
-![Alt text](../images/analog-viewer-window.png)
+<img src="../../images/analog-viewer-window.png" alt="drawing" width="600"/><br><br>
 
 - The viewer can also be launched from the Bpod console
 - The viewer can run during the behavior session for online monitoring (note: the UI may add jitter to soft-code processing if using TrialManager).
@@ -74,11 +74,11 @@ Launches a viewer for Flex I/O channels configured as analog input.
     - Note: The analog data file is created automatically when starting a session. It has the same path and naming convention as the primary data file. It can be merged into the primary data file at the end of the session by calling AddFlexIOAnalogData().
 - DC: Press to subtract the DC offset from all signals (in the viewer only; logged data is unaffected)
 - s/Div: Adjust seconds per division on the viewer grid. The 'Time' label on the bottom info bar shows the current time per division.
-- V/Div: Adjust volts per division on the viewer grid. 
+- V/Div: Adjust volts per division on the viewer grid.
 
 **Syntax**
 ```matlab
-BpodSystem.startAnalogViewer() 
+BpodSystem.startAnalogViewer()
 ```
 
 **Parameters**

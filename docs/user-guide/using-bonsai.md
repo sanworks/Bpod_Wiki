@@ -51,6 +51,8 @@ Notice: The current release should be regarded as an alpha. It works with exampl
 
 * You should now see the Bonsai socket configurator:
 
+<img src="../../images/bonsai-socket-configurator.png" alt="drawing" width="200"/><br>
+
 * Since you are creating the TCP server, you can use custom IP and Port. The defaults work fine.
 
 * Click "Connect".

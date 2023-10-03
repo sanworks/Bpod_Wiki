@@ -1,4 +1,5 @@
 # Analog Output Module
+<img src="../../images/analog-out-module.jpg" alt="drawing" width="500"/><br><br>
 The analog output module plays voltage sequences on 4 or 8 output channels. Output is driven by the Analog Devices [AD5754R](https://www.google.com/url?q=https%3A%2F%2Fwww.analog.com%2Fen%2Fproducts%2Fad5754r.html&sa=D&sntz=1&usg=AOvVaw0OBIu8VgtX56aNPqnp5G2O) DAC.
 
 Version 1 was released in 2017. It is powered by PJRC [Teensy 3.6](http://www.google.com/url?q=http%3A%2F%2Fhackaday.com%2F2016%2F08%2F17%2Fintroducing-the-teensy-3-5-and-3-6%2F&sa=D&sntz=1&usg=AOvVaw0eK_7K2oxeJegAxaUk4naE).

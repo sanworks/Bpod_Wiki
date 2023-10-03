@@ -95,8 +95,7 @@ S.GUIPanels.Shaping = {'UseAntiBias', 'ManualStimulate', 'DifficultyLevel'};
 
 BpodParameterGUI('init', S);
 ```
-
-![Parameter GUI Example](../images/bpodparametergui-complex-example.png)
+<img src="../../images/bpodparametergui-complex-example.png" alt="drawing" width="400"/><br><br>
 
 In this example the `S.GUI.ManualStimulate = 'ManualStimulate(1)` together with `S.GUIMeta.ManualStimuate.Style = 'pushbutton'` yields a button that will activate (callback) a function when pressed.
 
@@ -512,7 +511,7 @@ Displays the total amount of liquid reward delivered in the current session.
 * Units are shown in microliters until 1ml is reached, and subsequently in ml.
 * The display is shown here for an example session:
 
-![Alt text](../images/totalreward.jpg)
+<img src="../../images/totalreward.jpg" alt="drawing" width="200"/><br><br>
 
 **Syntax**
 On first call:
@@ -553,7 +552,8 @@ The StateTiming plot shows the time course of states in the previous trial.
 
 StateTiming was contributed by Florian Rau in Poulet Lab at MDC Berlin.
 
-![Alt text](../images/statetime-example-window.png)
+<img src="../../images/statetime-example-window.png" alt="drawing" width="500"/><br><br>
+
 
 **Syntax**
 ```matlab

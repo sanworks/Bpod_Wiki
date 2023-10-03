@@ -1,6 +1,6 @@
 # Port Array Module
-![Alt text](../images/port-array-module.png)
-The Port Array Module interfaces 4 behavior ports to a Bpod State Machine. 
+<img src="../../images/port-array-module.png" alt="drawing" width="500"/><br><br>
+The Port Array Module interfaces 4 behavior ports to a Bpod State Machine.
 
 Up to 5 port array modules may be used with a single state machine, for experiments requiring large numbers of behavior ports.
 

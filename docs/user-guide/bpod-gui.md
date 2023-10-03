@@ -1,8 +1,8 @@
 # Using the Bpod Console GUI
 
 ## Bpod Console
-The Bpod Console will appear when `Bpod` is launched and the device successfully connects:
-![Alt text](../images/bpod-console.png)
+The Bpod Console will appear when `Bpod` is launched and the device successfully connects:<br><br>
+<img src="../../images/bpod-console.png" alt="drawing" width="650"/><br>
 
 The exact buttons displayed on the console will reflect channels and features available on your state machine version.
 
@@ -73,7 +73,7 @@ The console is your starting point for running protocols with Bpod. It has 5 sec
 ## Launch manager
 The Launch Manager appears when a protocol is run from the Bpod Console.
 
-![Alt text](../images/launch-manager.png)
+<img src="../../images/launch-manager.png" alt="drawing" width="650"/><br>
 
 - **Protocol panel**
     - Lists the protocols in /Bpod Local/Protocols/
@@ -123,7 +123,7 @@ Solenoid valves connected to each behavior port (we recommend [these](http://www
 
 - From the [Bpod console](#bpod-console), click "Settings" (wrench icon). You will see a settings menu:
 
-![Alt text](../images/console-settings-menu.png)
+<img src="../../images/console-settings-menu.png" alt="drawing" width="300"/><br><br>
 
 - Next, click "Liquid reward calibration" (the faucet icon on the far left)
 - You should now see the calibration manager:

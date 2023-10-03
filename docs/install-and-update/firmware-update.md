@@ -9,7 +9,7 @@ A GUI will launch. Select the correct firmware file, version and the target devi
 - Firmware file names follow the convention: ModuleName_HardwareVersion_FirmwareType
 - The latest firmware version is selected by default.
 
-<img src="/images/firmware-loader.png" alt="drawing" width="500"/>
+<img src="../../images/firmware-loader.png" alt="drawing" width="500"/>
 
 ## Manual
 
