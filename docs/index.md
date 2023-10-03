@@ -44,7 +44,7 @@ title: Bpod system concept
 ---
 %%{init: { 'theme': 'default', 'sequence': { 'mirrorActors': false } }}%%
 sequenceDiagram
-participant matlab as Computer
+participant matlab as Win/Linux PC
 participant bpod as Bpod State Machine
 participant external as Hardware Modules
 actor subject as Test Subject

@@ -3,9 +3,9 @@ A rotary encoder is a device that sends information related to its angular rotat
 
 !!! important
     There are two versions of the Rotary Encoder Module with non-overlapping feature sets. Both modules are controlled by the `RotaryEncoderModule` class. Functions specific to each version are indicated with:
-    
+
     - Module v1 only: :one:
-    
+
     - Module v2 only: :two:
 
 ## Description
@@ -18,7 +18,7 @@ R = RotaryEncoderModule('COM3');
 ```
 Where COM3 is the rotary encoder module's serial port.
 
-The rotary encoder module is controlled in 2 ways: 
+The rotary encoder module is controlled in 2 ways:
 - Setting the `RotaryEncoderModule` object's fields
 - Calling the `RotaryEncoderModule` object's functions (its methods)
 
@@ -44,7 +44,7 @@ The rotary encoder module is controlled in 2 ways:
     - 'Off' (default) to disable event transmission.
 - **moduleOutputStream** (:one: module v1 only)
     - 'On' to stream the current position directly to a synthesis module's InputStream port (DDS, AnalogOutput).
-    - 'Off' (default) to disable the module stream 
+    - 'Off' (default) to disable the module stream
 - **moduleStreamPrefix** (:one: module v1 only)
     - When streaming position to a synthesis module (analog output, DDS), a character precedes each 16-bit position value.
     - By default, moduleStreamPrefix is set to 'M' - the op code for the DDS module's "mapping" function.
@@ -78,7 +78,7 @@ The rotary encoder module is controlled in 2 ways:
         - timeData (a 1 x nPositions vector of times for each position measurement, in seconds)
     - If no data was logged, the function throws an error to indicate that no data was available.
 - **startUSBStream()**
-    - Starts streaming each new position (and corresponding time measurements) to the USB port. 
+    - Starts streaming each new position (and corresponding time measurements) to the USB port.
     - Positions and times are stored in a buffer. The latest streaming data can be retrieved by calling readUSBStream().
     - Optionally, add argument 'UseTimer' to avoid buffer overruns if your code will not call readUSBSTream() every 100ms or so. This will start a MATLAB timer in the background to read incoming data from the buffer.
 - data = **readUSBStream()**
@@ -181,4 +181,8 @@ sma = AddState('State', 'dothing',
 
 In this case, the 'x' and '1' correspond to bytes 01111000 00110001 or 30769. Note that this example is only illustrative because a `newPosition` of 30769 would probably fail because it is beyond the `wrapPoint` for the module.
 
-We could also use the Bpod Console's Manual Override to send this byte sequence manually via state machine, or indeed use `RotaryEncoderModule.Port.write()` to do so via SerialUSB. 
+We could also use the Bpod Console's Manual Override to send this byte sequence manually via state machine, or indeed use `RotaryEncoderModule.Port.write()` to do so via SerialUSB.
+
+## Example Protocol
+
+An example Bpod protocol using the Rotary Encoder Module is given [here](https://github.com/sanworks/Bpod_Gen2/tree/master/Examples/Protocols/Wheel/Click2AFC)

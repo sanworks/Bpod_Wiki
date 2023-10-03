@@ -1,7 +1,5 @@
 # Using Bonsai
 
-Bonsai can be integrated with Bpod.
-
 [Bonsai](https://bonsai-rx.org/) is an open source software tool for processing data streams, developed by [Goncalo Lopes](https://neurogears.org/about-us/).
 
 Among many applications in behavior measurement, it can be used for live video tracking, e.g. to trigger a Bpod state change based on the test subject's position in an arena.
@@ -41,7 +39,7 @@ sma = AddState(sma, 'Name', 'SendToBonsai', ...
 An example Bonsai program [here](https://github.com/sanworks/Bpod_Gen2/tree/develop/Functions/Plugins/Bonsai/APP_SoftCode%20Example) uses the SerialRead and SerialWrite nodes to read incoming bytes from the state machine, and echo the same bytes back to the state machine generating Bpod events. Usage instructions are in the Readme file in the program folder.
 
 ## Via TCP/IP on localhost
-For State Machine r0.5 - r1.0 (any firmware), and r2.0 with firmware v22
+For State Machine r0.5 - r1.0 (any firmware), and r2.0 with firmware v22 or earlier
 
 Since Bonsai is a separate program and MATLAB requires ownership of the Bpod state machine's only serial port, the soft codes must be passed via a local TCP socket. The Bonsai Socket Configurator manages this socket connection by creating a TCP server within MATLAB, and confirming when Bonsai is successfully attached as a client.
 

@@ -1,7 +1,7 @@
 # Installing Bpod
 This section details installing the Bpod software on the governing computer, and the Bpod firmware on the Bpod device.
 
-## PC (Windows 10)
+## Windows 10 or 11
 ### Requirements
 1. Windows 10 or 11
 2. 8GB+ RAM
@@ -55,7 +55,7 @@ If all went well, this should copy the latest Bpod software to your computer.
 
 [^1]: State machines purchased from the Sanworks Assembly Surface come with firmware pre-installed
 
-## Ubuntu
+## Ubuntu Linux
 These are instructions for setting up Bpod on a computer running Ubuntu
 
 We recommend at least an Intel Corei5 processor and 8GB of RAM.
@@ -65,12 +65,11 @@ This tutorial assumes you have loaded Bpod's firmware if you self-assembled the 
 1. Install Ubuntu (64bit) with >100GB partition
     1. Update Ubuntu to current version if necessary
 2. Install MATLAB.
-    1. When prompted, check “install script”.
-3. Run MATLAB (if default install location, from terminal: sudo /usr/local/MATLAB/RXXXX/bin/matlab
+3. Run MATLAB. If using the default install location, from the terminal run: sudo /usr/local/MATLAB/RXXXX/bin/matlab
 4. Install PsychToolbox:
     1. Download PsychToolbox by following instructions for linux [here](http://www.google.com/url?q=http%3A%2F%2Fpsychtoolbox.org%2Fdownload%2F%23Linux&sa=D&sntz=1&usg=AOvVaw3f0me0x_GWXOv64cwC4-lS). Use the SUBVERSION based installation.
     2. Allow all patches and use default settings when prompted.
-5. Copy Bpod files from [here](https://www.google.com/url?q=https%3A%2F%2Fgithub.com%2Fsanworks%2FBpod_Gen2&sa=D&sntz=1&usg=AOvVaw0hZOqBP6mI4rPtPR76Nb5k) and add /Bpod_Gen2/Bpod System Files to MATLAB path
+5. Copy Bpod files from [here](https://github.com/sanworks/Bpod_Gen2/archive/refs/heads/master.zip) and add /Bpod_Gen2/Bpod System Files to MATLAB path
 6. Close MATLAB
 7. Open a terminal window and add yourself to the “dialout” group:
 8. `sudo usermod -a -G dialout kepecslab` (if kepecslab is your username)

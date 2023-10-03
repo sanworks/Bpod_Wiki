@@ -158,4 +158,4 @@ Bpod_Gen2/    # Contains files required for Bpod to run
 ```
 
 !!! note
-    The expected location for the 'Bpod Local' folder is in same folder as 'Bpod_Gen2' is located.
+    The default location for the 'Bpod Local' folder is in same folder where 'Bpod_Gen2' is located.

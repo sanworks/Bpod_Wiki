@@ -80,7 +80,7 @@ nav:
       - Example Code:
         - user-guide/example-code.md
 
-    - Extensions:
+    - Integrations:
       - user-guide/using-bonsai.md
       - user-guide/using-bcontrol.md
   - Serial Interfaces:
@@ -128,10 +128,6 @@ nav:
 #
 
 not_in_nav: |
-  /install-and-update/arduinodue-update.md
-  /install-and-update/arduinom0-update.md
-  /install-and-update/samkd21mini-update.md
-  /install-and-update/teensy3x-update.md
   /module-documentation/readme.md
   /serial-interfaces/fsm-serial-interface-v17.md
   /function-reference/updating-bpod.md
