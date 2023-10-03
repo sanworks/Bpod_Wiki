@@ -1,8 +1,8 @@
-site_name: Bpod Wiki (dev)
+site_name: Bpod Wiki
 # copyright: Copyright &copy; 2023 Sanworks LLC  # is this accurate?
 repo_url: https://github.com/sanworks/Bpod_Gen2  # the top right's repo link
 repo_name: Sanworks/Bpod_Gen2
-edit_uri: https://github.com/ogeesan/bpod-docs-testing/tree/main/docs/  # where the features content.action.edit and content.action.view link to
+edit_uri: https://github.com/sanworks/Bpod_Wiki/tree/main/docs/  # where the features content.action.edit and content.action.view link to
 
 nav:
   - Home: index.md
