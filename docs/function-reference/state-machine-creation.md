@@ -5,7 +5,7 @@
 ### `NewStateMachine()`
 **Description**
 
-Creates a new, empty state machine. 
+Creates a new, empty state machine.
 
 States can be added to the empty state machine description with the `AddState()` function. The state machine description returned is a struct with 21 subfields:
 
@@ -59,7 +59,7 @@ sma = AddState(sma, 'Name', 'MyState', ...
 ### `AddState()`
 **Description**
 
-Adds a state to an existing state machine. 
+Adds a state to an existing state machine.
 
 **Syntax**
 
@@ -90,41 +90,41 @@ NewStateMachine = AddState(StateMachineStruct, 'Name', StateName,...
 
 **Examples**
 
-This code generates a simple state matrix that drives BNC output channel 1 to 5V (high) for 1 second before exiting. 
+This code generates a simple state matrix that drives BNC output channel 1 to 5V (high) for 1 second before exiting.
 ```matlab
 sma = NewStateMachine();
 
 sma = AddState(sma, 'Name', 'MyState', ...
     'Timer', 1,...
-    'StateChangeConditions', {'Tup', 'exit'},... 
-    'OutputActions', {'BNCState', 1}); 
+    'StateChangeConditions', {'Tup', 'exit'},...
+    'OutputActions', {'BNCState', 1});
 % Tup occurs when the state's internal timer elapses
 ```
 
-This code generates a simple state matrix that flashes the port LEDs of ports 1-3 for 0.1 second each (assuming an LED is connected to the port's PWM line). 
+This code generates a simple state matrix that flashes the port LEDs of ports 1-3 for 0.1 second each (assuming an LED is connected to the port's PWM line).
 ```matlab
 sma = NewStateMachine();
 
 sma = AddState(sma, 'Name', 'LightPort1', ...
     'Timer', 0.1,...
     'StateChangeConditions', {'Tup', 'LightPort2'},...
-    'OutputActions', {'PWM1', 255}); 
+    'OutputActions', {'PWM1', 255});
 
 sma = AddState(sma, 'Name', 'LightPort2', ...
     'Timer', 0.1,...
     'StateChangeConditions', {'Tup', 'LightPort3'},...
-    'OutputActions', {'PWM2', 255}); 
+    'OutputActions', {'PWM2', 255});
 
 sma = AddState(sma, 'Name', 'LightPort3', ...
     'Timer', 0.1,...
     'StateChangeConditions', {'Tup', 'exit'},...
-    'OutputActions', {'PWM3', 255}); 
+    'OutputActions', {'PWM3', 255});
 ```
 
 ### `EditState()`
 **Description**
 
-Edits a state in an existing state machine. 
+Edits a state in an existing state machine.
 
 **Syntax**
 
@@ -141,7 +141,7 @@ NewMatrix = EditState(StateMachineStruct, StateName, ParameterName, ParameterVal
     - 'StateChangeConditions'
     - 'OutputActions'
 - ParameterValue: The new value of the parameter.
-    - For timer, this is the new timer duration in seconds. 
+    - For timer, this is the new timer duration in seconds.
     - For StateChangeConditions, this is a cell array of strings formatted with pair-wise arguments as in `AddState()`.
     - For OutputActions, this is a cell array of strings formatted with pair-wise arguments as in `AddState()`.
 
@@ -158,7 +158,7 @@ sma = NewStateMachine();
 sma = AddState(sma, 'Name', 'MyState', ...
     'Timer', 1,...
     'StateChangeConditions', {'Tup', 'exit'},...
-    'OutputActions', {'BNCState', 1}); 
+    'OutputActions', {'BNCState', 1});
 
 sma = EditState(sma, 'MyState', 'Timer', 10);
 
@@ -175,9 +175,9 @@ Sets the parameters of a global timer.
 - An optional onset latency can be configured, following the timer trigger
 - Following the onset latency, a "start" event is generated, and can trigger a state change.
 - Then, following the timer duration, an "end" event is generated, which can also trigger a state change.
-- A digital or PWM (LED) output channel can be linked to the timer. 
-    - The linked channel is set "high" when the timer starts, and "low" when it ends. PWM values may be specified for onset/offset. 
-- Separate serial output messages can be linked to the timer start and end events to control modules. 
+- A digital or PWM (LED) output channel can be linked to the timer.
+    - The linked channel is set "high" when the timer starts, and "low" when it ends. PWM values may be specified for onset/offset.
+- Separate serial output messages can be linked to the timer start and end events to control modules.
 - Global timers can be set to 'Loop'; repeat until they are explicitly canceled, or until a fixed number of iterations.
     - Each loop iteration generates a start and stop event (this can be disabled for high-frequency loops)
     - A configurable interval separates loop iterations (default = 0 seconds)
@@ -189,9 +189,9 @@ Sets the parameters of a global timer.
 The function uses argument-value pairs. These must be listed in order (for efficiency), up to the last argument you need. Beyond that, optional arguments (denoted by [ ]) may be omitted):
 
 ```matlab
-NewStateMachine = SetGlobalTimer(StateMachineStruct, 'TimerID', TimerNumber,... 
+NewStateMachine = SetGlobalTimer(StateMachineStruct, 'TimerID', TimerNumber,...
         'Duration', TimerDuration, ['OnsetDelay', OnsetDelay],...
-        ['Channel', OutputChannel], ['OnsetValue', OnsetValue],... 
+        ['Channel', OutputChannel], ['OnsetValue', OnsetValue],...
         ['OffsetValue', OffsetValue], ['Loop', LoopMode],...
         ['GlobalTimerEvents', EventsEnabled], ['LoopInterval', LoopInterval],...
         ['OnsetTrigger', OnsetTriggerByte])
@@ -204,7 +204,7 @@ where [ ] = optional argument
 - StateMachineStruct: The state machine description whose global timer you are setting (typically named 'sma').
 - TimerNumber: The number of the timer you are setting (an integer, 1-5).
 - TimerDuration: The duration of the timer, following timer start (0-3600 seconds)
-- OnsetDelay: A fixed interval following timer trigger, before the timer start event (default = 0 seconds) 
+- OnsetDelay: A fixed interval following timer trigger, before the timer start event (default = 0 seconds)
     - If set to 0, the timer starts immediately on trigger and no separate start event is generated.
 - OutputChannel: A string specifying an output channel to link to the timer (default = none)
     - Valid output channels can be viewed from the "inspect" icon on the Bpod Console.
@@ -227,11 +227,11 @@ where [ ] = optional argument
 
 The two examples below are for simple use cases. More complex global timer examples can be found in the Bpod repository: /Bpod_Gen2/Examples/State Machines/GlobalTimers/
 
-This code generates a state machine that sets a global timer for 3 seconds, triggers it in the first state, and handles it in the second and third states. 
+This code generates a state machine that sets a global timer for 3 seconds, triggers it in the first state, and handles it in the second and third states.
 ```matlab
 sma = NewStateMachine();
 
-sma = SetGlobalTimer(sma, 'TimerID', 1, 'Duration', 3); 
+sma = SetGlobalTimer(sma, 'TimerID', 1, 'Duration', 3);
 
 sma = AddState(sma, 'Name', 'State1', ...
     'Timer', 0,...
@@ -256,7 +256,7 @@ This code generates a state machine that sets global timer#2 for 2 seconds with 
 sma = NewStateMachine;
 
 sma = SetGlobalTimer(sma, 'TimerID', 2, 'Duration', 2,...
-                          'OnsetDelay', 1.5, 'Channel', 'BNC2'); 
+                          'OnsetDelay', 1.5, 'Channel', 'BNC2');
 
 sma = AddState(sma, 'Name', 'TimerTrig', ...
     'Timer', 0,...
@@ -271,17 +271,16 @@ sma = AddState(sma, 'Name', 'Port1Lit', ...
 sma = AddState(sma, 'Name', 'Port3Lit', ...
     'Timer', .25,...
     'StateChangeConditions', {'Tup', 'Port1Lit', 'GlobalTimer1_End', 'exit'},...
-    'OutputActions', {'PWM3', 255}); 
+    'OutputActions', {'PWM3', 255});
 ```
 
 ### `SetGlobalCounter()`
 **Description**
 
-Sets the threshold and monitored event for one of the 5 global counters. 
+Sets the threshold and monitored event for one of the 5 global counters.
 
 - Global counters can count instances of events, and handle when the count exceeds a threshold from any state (by triggering a state change).
 - The number of possible counters is a configurable parameter specified in the state machine firmware.
-- For more on global counters, see [Using State Matrices](../user-guide/index.md#state-matrix).
 
 **Syntax**
 
@@ -302,7 +301,7 @@ NewStateMachine = SetGlobalCounter(StateMachineStruct, CounterNumber, TargetEven
 
 **Example**
 
-This code generates a state machine that sets a global counter to count 5 BNC1High events, resets the count to 0 in the second state, and handles it in the third and fourth states. 
+This code generates a state machine that sets a global counter to count 5 BNC1High events, resets the count to 0 in the second state, and handles it in the third and fourth states.
 
 ```matlab
 sma = NewStateMachine();

@@ -1,6 +1,69 @@
 # BpodSystem fields
 `BpodSystem` exists in the workspace as a [global object](https://mathworks.com/help/matlab/ref/global.html). It has the following fields:
 
+### StateMachineInfo
+**Description**
+
+A struct containing human-readable information about the currently connected state machine hardware.
+
+Different state machine devices will populate this struct differently, resulting in different possible events and outputs.
+
+It has the following fields:
+
+- nEvents: the total number of unique events monitored from input channels
+- EventNames: A character string naming each event
+    - Each event is a state of an input channel
+    - Use these with the `AddState()` function when writing state machines.
+- InputChannelNames: A character string naming each input channel
+    - Each channel is capable of generating multiple states
+    - Use these with the `SetCondition()` function
+- nOutputChannels: the total number of unique output channels
+- OutputChannelNames: A character string naming each output channel
+    - Use these with the `AddState()` and `SetGlobalTimer()` functions
+- MaxStates: The maximum number of states supported by the connected state machine
+
+**Example**
+
+`>> BpodSystem.StateMachineInfo.OutputChannelNames`
+```
+ans =
+
+  Columns 1 through 7
+    'Serial1'    'Serial2'    'Serial3'    'SoftCode'    'ValveState'    'BNC1'    'BNC2'
+
+  Columns 8 through 15
+    'Wire1'    'Wire2'    'Wire3'    'PWM1'    'PWM2'    'PWM3'    'PWM4'    'PWM5'
+
+  Columns 16 through 20
+    'PWM6'    'PWM7'    'PWM8'    'GlobalTimerTrig'    'GlobalTimerCancel'
+
+  Column 21
+    'GlobalCounterReset'
+```
+### Status
+**Description**
+
+`BpodSystem.Status` is a struct populated with system status variables. Most subfields are used internally by the GUI.
+
+`BpodSystem.Status.BeingUsed` indicates whether a behavior session is running.
+
+- BeingUsed is set to 1 when:
+    - A state machine is run using `RunStateMachine()` or `BpodTrialManager`
+    - A session is started with `RunProtocol()` or the Launch Manager
+- BeingUsed is set to 0 when:
+    - The 'Stop' or 'Pause' buttons are pressed on the Bpod Console GUI
+    - The session is stopped with `RunProtocol('Stop')`
+
+**Example**
+
+When the user ends the session, this code calls a user-defined cleanup function before exiting
+
+```matlab
+if BpodSystem.Status.BeingUsed == 0
+    break
+end
+```
+
 ### Data
 **Description**
 
@@ -11,8 +74,8 @@ Stores session data as a `struct`.
 
 **Example**
 
-This code sends "sma" (an existing state matrix) to Bpod, runs it 10 times, and packages the raw events for analysis. 
-It then saves them to disk on each trial. 
+This code sends "sma" (an existing state matrix) to Bpod, runs it 10 times, and packages the raw events for analysis.
+It then saves them to disk on each trial.
 
 ```matlab
 SendStateMatrix(sma);
@@ -27,13 +90,7 @@ end
 ### ProtocolSettings
 **Description**
 
-Saves the struct BpodSystem.ProtocolSettings to disk.
-
-- The settings in BpodSystem.ProtocolSettings are saved over the file targeted when selecting settings in the launch manager.
-
-**Syntax**
-
-`SaveProtocolSettings()`
+ProtocolSettings contains the settings struct selected by the user when launching a protocol.
 
 **Parameters**
 
@@ -59,6 +116,23 @@ BpodSystem.ProtocolSettings = S;
 SaveProtocolSettings; % Saves the default settings to the disk location selected in the launch manager.
 ```
 
+### ProtocolFigures
+**Description**
+
+A struct for handles of figures that display online data.
+
+- Since `BpodSystem` is a global variable, the figure handles in this struct will be available in figure update functions and in the main protocol function.
+- All figures in `BpodSystem.ProtocolFigures` will automatically be closed when the protocol ends.
+
+**Example**
+
+This code initializes a new figure to show data, and adds its handle to `BpodSystem.ProtocolFigures`.
+At the conclusion of the session it will be closed.
+```matlab
+BpodSystem.ProtocolFigures.MyPlotFig = figure('Position', [200 200 1000 200],...
+                                              'name', 'My Plots');
+```
+
 ### SoftCodeHandlerFunction
 **Description**
 
@@ -81,27 +155,10 @@ sma = AddState(sma, 'Name', 'State1', ...
 % byte when it comes back.
 BpodSystem.SoftCodeHandlerFunction = 'SoftCodeHandler_Printout';
 
-% Part 3 (separate file in protocol folder): This code handles the byte by 
+% Part 3 (separate file in protocol folder): This code handles the byte by
 % printing it to the MATLAB command window.
 function SoftCodeHandler_Printout(Byte)
 disp(Byte);
-```
-
-### ProtocolFigures
-**Description**
-
-A struct for handles of figures that display online data.
-
-- Since `BpodSystem` is a global variable, the figure handles in this struct will be available in figure update functions and in the main protocol function.
-- All figures in `BpodSystem.ProtocolFigures` will automatically be closed when the protocol ends.
-
-**Example**
-
-This code initializes a new figure to show data, and adds its handle to `BpodSystem.ProtocolFigures`.
-At the conclusion of the session it will be closed.
-```matlab
-BpodSystem.ProtocolFigures.MyPlotFig = figure('Position', [200 200 1000 200],...
-                                              'name', 'My Plots');
 ```
 
 ### EmulatorMode
@@ -125,69 +182,6 @@ if BpodSystem.EmulatorMode == 0
     SerialEthernet('Connect', RemoteIP , RemotePort);
 else
     disp('Fake-connected to a fake TCP server')
-end
-```
-
-### StateMachineInfo
-**Description**
-
-A struct containing human-readable information about the currently connected state machine hardware.
-
-Different state machine devices will populate this struct differently, resulting in different possible events and outputs.
-
-It has the following fields:
-
-- nEvents: the total number of unique events monitored from input channels
-- EventNames: A character string naming each event 
-    - Each event is a state of an input channel
-    - Use these with the `AddState()` function when writing state machines.
-- InputChannelNames: A character string naming each input channel
-    - Each channel is capable of generating multiple states
-    - Use these with the `SetCondition()` function
-- nOutputChannels: the total number of unique output channels
-- OutputChannelNames: A character string naming each output channel
-- Use these with the `AddState()` and `SetGlobalTimer()` functions
-- MaxStates: The maximum number of states supported by the connected state machine
-
-**Example**
-
-`>> BpodSystem.StateMachineInfo.OutputChannelNames`
-```
-ans = 
-
-  Columns 1 through 7
-    'Serial1'    'Serial2'    'Serial3'    'SoftCode'    'ValveState'    'BNC1'    'BNC2'
-
-  Columns 8 through 15
-    'Wire1'    'Wire2'    'Wire3'    'PWM1'    'PWM2'    'PWM3'    'PWM4'    'PWM5'
-
-  Columns 16 through 20
-    'PWM6'    'PWM7'    'PWM8'    'GlobalTimerTrig'    'GlobalTimerCancel'
-
-  Column 21
-    'GlobalCounterReset'
-```
-### Status
-**Description**
-
-`BpodSystem.Status` is a struct populated with system status variables. Most subfields are used internally by the GUI. 
-
-`BpodSystem.Status.BeingUsed` indicates whether a behavior session is running.
-
-- BeingUsed is set to 1 when:
-    - A state machine is run using `RunStateMachine()` or `BpodTrialManager`
-    - A session is started with `RunProtocol()` or the Launch Manager
-- BeingUsed is set to 0 when:
-    - The 'Stop' or 'Pause' buttons are pressed on the Bpod Console GUI
-    - The session is stopped with `RunProtocol('Stop')`
-
-**Example**
-
-When the user ends the session, this code calls a user-defined cleanup function before exiting
-
-```matlab
-if BpodSystem.Status.BeingUsed == 0
-    break
 end
 ```
 
@@ -228,7 +222,7 @@ FlexIOconfig is attached to a callback function. Any changes to the struct are a
     - Range: [1, 4]
 - **threshold1, threshold2**: A 1x4 array specifying an event threshold for each channel. Each Flex I/O channel has two configurable thresholds, contained in threshold1 and threshold2 respectively.
 - Unit  s: Volts
-- **polarity1, polarity2**: A 1x4 array specifying the polarity of each channel's threshold. 
+- **polarity1, polarity2**: A 1x4 array specifying the polarity of each channel's threshold.
     - 0: An event is generated when voltage is above the threshold
     - 1: An event is generated when voltage is below the threshold
 - **thresholdMode**: A 1x4 array specifying the mode of each threshold. All thresholds are disabled when reached.

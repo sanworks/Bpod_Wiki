@@ -124,3 +124,7 @@ clear A
 
 - Clearing the object releases the serial port, so other applications can access it.
 - If a BpodAnalogIn object is created inside a MATLAB function, the object is cleared automatically when the function returns.
+
+## Example Protocol
+
+An example Bpod protocol using the analog input module is given [here](https://github.com/sanworks/Bpod_Gen2/blob/master/Examples/Protocols/Analog_Input/Light2AFC_AnalogStreaming/Light2AFC_AnalogStreaming.m).

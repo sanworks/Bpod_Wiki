@@ -6,102 +6,138 @@ edit_uri: https://github.com/ogeesan/bpod-docs-testing/tree/main/docs/  # where 
 
 nav:
   - Home: index.md
-  - User Guide:
-    - user-guide/index.md
-    - Additional guides:
-      - user-guide/bpod-gui.md
-      - user-guide/protocol-development.md
-      - user-guide/visual-stimulus-integration.md
-      - user-guide/using-bcontrol.md
-  - Functions:
-    - function-reference/index.md
-    - Function Reference:
-      - function-reference/initialization.md
-      - function-reference/bpodsystem-fields.md
-      - function-reference/bpodsystem-functions.md
-      - function-reference/state-machine-creation.md
-      - function-reference/running-statemachine.md
-      - function-reference/running-protocol.md
-      - function-reference/data-storage.md
-      - function-reference/general-plugins.md
-      - function-reference/serial-message-setup.md
-      - function-reference/module-matlab-usb.md
-      - function-reference/module-matlab-fsm.md
-      - function-reference/pc-fsm-softcodes.md
-      - function-reference/liquid-calibration.md
-      - function-reference/updating-bpod.md
-  - Modules:
-    - module-documentation/index.md
-    - Plugins:
-      - module-documentation/analog-input-module.md
-      - module-documentation/audioplayer.md
-      - module-documentation/dds-module.md
-      - module-documentation/hifi-module.md
-      - module-documentation/I2C-messenger-module.md
-      - module-documentation/pulsepal-module.md
-      - module-documentation/rotary-encoder-module.md
-      - module-documentation/waveplayer.md
-    - Serial Interfaces:
-      - serial-interfaces/analogue-input-module-serial-interface.md
-      - serial-interfaces/audioplayer-serial-interface.md
-      - serial-interfaces/blink-module-serial-interface.md
-      - serial-interfaces/hifi-module-serial-interface.md
-      - serial-interfaces/port-array-module-serial-interface.md
-      - serial-interfaces/rotary-encoder-module-serial-interface.md
-      - serial-interfaces/valve-module-serial-interface.md
-      - serial-interfaces/waveplayer-serial-interface.md
-      # - serial-interfaces/fsm-serial-interface-v17.md
-      - serial-interfaces/fsm-serial-interface-v18.md
-  - Assembly:
-    - assembly/index.md
-    - Install and Update:
+  - Hardware:
+      - assembly/index.md
+      - State Machines:
+        - assembly/state-machine-assembly-0_5.md
+        - assembly/state-machine-assembly-0_9-1_0.md
+        - assembly/state-machine-assembly-2_3-2_4.md
+        - assembly/state-machine-assembly-2_5.md
+        - assembly/state-machine-assembly-2+.md
+      - Gen2 Modules:
+        - assembly/analog-input-module-assembly.md
+        - assembly/analog-output-module-assembly.md
+        - assembly/hifi-module-assembly.md
+        - assembly/rotary-encoder-module-assembly.md
+        - assembly/valve-driver-module-assembly.md
+        - assembly/port-array-module-assembly.md
+        - assembly/dds-module-assembly.md
+        - assembly/ethernet-module-assembly.md
+        - assembly/snes-module-assembly.md
+        - assembly/arduino-shield-gen2-assembly.md
+        - assembly/teensy-shield-assembly.md
+        - assembly/raspberry-pi-shim-assembly.md
+      - Gen1 Modules:
+        - assembly/arduino-shield-0-5-assembly.md
+        - assembly/open-ephys-module-assembly.md
+        - assembly/neuralynx-sync-board-assembly.md
+      - Behavior Ports:
+        - assembly/lickometer-assembly.md
+        - assembly/mouse-behavior-port-assembly.md
+        - assembly/port-breakout-board-assembly.md
+        - assembly/mouse-box-assembly.md
+      - Bench Testing:
+        - user-guide/bench-testing-bpod.md
+  - Firmware:
+    - install-and-update/firmware-repo-list.md
+    - install-and-update/firmware-update.md
+  - MATLAB Software:
+    - Setup:
       - install-and-update/installing-bpod.md
-      - user-guide/bench-testing-bpod.md
       - install-and-update/software-update.md
-      - install-and-update/firmware-update.md
-    - State Machines:
-      - assembly/state-machine-assembly-0_5.md
-      - assembly/state-machine-assembly-0_9-1_0.md
-      - assembly/state-machine-assembly-2_3-2_4.md
-      - assembly/state-machine-assembly-2_5.md
-      - assembly/state-machine-assembly-2+.md
-    - Modules:
-      - assembly/analog-input-module-assembly.md
-      - assembly/analog-output-module-assembly.md
-      - assembly/arduino-shield-0-5-assembly.md
-      - assembly/arduino-shield-gen2-assembly.md
-      - assembly/dds-module-assembly.md
-      - assembly/ethernet-module-assembly.md
-      - assembly/hifi-module-assembly.md
-      - assembly/lickometer-assembly.md
-      - assembly/mouse-behavior-port-assembly.md
-      - assembly/mouse-box-assembly.md
-      - assembly/neuralynx-sync-board-assembly.md
-      - assembly/open-ephys-module-assembly.md
-      - assembly/port-array-module-assembly.md
-      - assembly/port-breakout-board-assembly.md
-      - assembly/raspberry-pi-shim-assembly.md
-      - assembly/rotary-encoder-module-assembly.md
-      - assembly/snes-module-assembly.md
-      - assembly/teensy-shield-assembly.md
-      - assembly/valve-driver-module-assembly.md
-  - External links:
-    - "Sanworks": "https://sanworks.io"
-    - "Forums": "https://sanworks.io/forums"
-    - "GitHub": "https://github.com/sanworks/Bpod_Gen2"
+    - Operation:
+      - user-guide/state-machine-concept.md
+      - user-guide/bpod-gui.md
+    - Programming:
+      - user-guide/protocol-development.md
+      - Function Reference: # IMPORTANT NOTE: New functions are not automatically added to the function-reference/index.md page!
+                            # Please add them manually, using the file's convention.
+        - function-reference/index.md
+        - function-reference/initialization.md
+        - function-reference/bpodsystem-fields.md
+        - function-reference/bpodsystem-functions.md
+        - function-reference/state-machine-creation.md
+        - function-reference/running-statemachine.md
+        - function-reference/running-protocol.md
+        - function-reference/data-storage.md
+        - function-reference/general-plugins.md
+        - function-reference/serial-message-setup.md
+        - function-reference/module-matlab-usb.md
+        - function-reference/module-matlab-fsm.md
+        - function-reference/pc-fsm-softcodes.md
+        - function-reference/liquid-calibration.md
+      - Bpod Module APIs:
+        - module-documentation/index.md
+        - module-documentation/analog-input-module.md
+        - Analog Output Module:
+          - module-documentation/waveplayer.md
+          - module-documentation/audioplayer.md
+          - module-documentation/pulsepal-module.md
+        - module-documentation/hifi-module.md
+        - module-documentation/rotary-encoder-module.md
+        - module-documentation/dds-module.md
+        - module-documentation/I2C-messenger-module.md
+      - Example Code:
+        - user-guide/example-code.md
+
+    - Integrations:
+      - user-guide/using-bonsai.md
+      - user-guide/using-bcontrol.md
+  - Serial Interfaces:
+    - serial-interfaces/fsm-serial-interface-v18.md
+    - serial-interfaces/analogue-input-module-serial-interface.md
+    - serial-interfaces/waveplayer-serial-interface.md
+    - serial-interfaces/audioplayer-serial-interface.md
+    - serial-interfaces/hifi-module-serial-interface.md
+    - serial-interfaces/rotary-encoder-module-serial-interface.md
+    - serial-interfaces/valve-module-serial-interface.md
+    - serial-interfaces/port-array-module-serial-interface.md
+    - serial-interfaces/blink-module-serial-interface.md
+  - Companion Devices:
+    - companion-devices/pulsepal.md
+    - companion-devices/frame2ttl.md
+  - Project Info:
+    - project-info/legal.md
+    - project-info/contact.md
+# nav:
+#   - Home: index.md
+#   - User Guide:
+#     - user-guide/index.md
+#     - Additional guides:
+#       - user-guide/bpod-gui.md
+#       - user-guide/protocol-development.md
+#       - user-guide/visual-stimulus-integration.md
+#       - user-guide/using-bcontrol.md
+#   - Functions:
+#     - function-reference/index.md
+#     - Function Reference:
+
+#   - Modules:
+#     - module-documentation/index.md
+#     - Plugins:
+
+#     - Serial Interfaces:
+
+#   - Assembly:
+#     - assembly/index.md
+
+#   - External links:
+#     - "Sanworks": "https://sanworks.io"
+#     - "Forums": "https://sanworks.io/forums"
+#     - "GitHub": "https://github.com/sanworks/Bpod_Gen2"
+#
 
 not_in_nav: |
-  /install-and-update/arduinodue-update.md
-  /install-and-update/arduinom0-update.md
-  /install-and-update/samkd21mini-update.md
-  /install-and-update/teensy3x-update.md
   /module-documentation/readme.md
   /serial-interfaces/fsm-serial-interface-v17.md
+  /function-reference/updating-bpod.md
 
 
 markdown_extensions:
   - admonition  # callouts/alerts
   - attr_list
+  - md_in_html
+  - markdown.extensions.extra
   - footnotes
   - codehilite
   - pymdownx.highlight:
@@ -119,6 +155,7 @@ markdown_extensions:
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
 
+
 plugins:
   - search
 
@@ -128,6 +165,8 @@ theme:
     - navigation.sections # use titles rather than expanding items
     # - navigation.expand # expand all items
     - navigation.indexes
+    - navigation.tabs
+    - navigation.tabs.sticky
     - content.action.edit
   font:
     text: IBM Plex Sans
@@ -163,3 +202,4 @@ theme:
 
 extra_css:
   - https://fonts.googleapis.com/css2?family=Aldrich
+  - extra.css

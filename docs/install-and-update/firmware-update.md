@@ -1,55 +1,79 @@
-# Firmware update
+# Update Procedure
 
 ## Automatic
 
-!!! note
-    An experimental auto-updater is included with the latest Bpod software. It is not available on all platforms, and as new software it carries the risk of malfunction in your particular MATLAB + PC configuration. If you choose to try it,
+From the MATLAB-command prompt, run: ```LoadBpodFirmware;```
 
-- To update the firmware of your state machine:
-    - Ensure the Bpod software is [installed](./software-update.md)
-    - Start MATLAB
-    - Run the following at the MATLAB command line:
-        - BpodFirmwareUpdate(MyPort)
-        - MyPort is the state machine's USB serial port (e.g. 'COM3')
-        - The updater will automatically detect your state machine's firmware version and give you the option to update
-- To update firmware of your module(s):
-    - Connect each module you want to update to the state machine using a CAT5 (Ethernet) cable
-    - Also connect each module you want to update to the PC via USB (even if a USB cable is not usually needed)
-    - Run Bpod()
-    - From the Bpod console, use the 'USB' button to pair each connected module with its USB serial port
-    - Next, run the following at the MATLAB command line:
-        - BpodFirmwareUpdate
-- The updater will automatically find any connected modules and give you the option to proceed with the update
+A GUI will launch. Select the correct firmware file, version and the target device's COM port, and click 'Load'.
 
-## Semi-Automatic
+- Firmware file names follow the convention: ModuleName_HardwareVersion_FirmwareType
+- The latest firmware version is selected by default.
 
-The semi-automatic option works on Windows only, and is only recommended for Teensy-based modules:
-
-- State Machine r2
-- Analog Output Module
-- Analog Input Module
-- HiFi Module
-- Rotary Encoder Module
-- Ethernet Module
-- DDS Module
-- Port Array Module
-From the MATLAB-command prompt, run: LoadBpodFirmware;
-
-A GUI will launch. Select the correct firmware and the target device's COM port, and click 'upload'.
+<img src="/images/firmware-loader.png" alt="drawing" width="500"/>
 
 ## Manual
 
-FOR ALL: 
+1. Download the [Arduino 2.2.X](https://www.arduino.cc/en/software) zip file, extract the zip folder and save the extracted folder somewhere permanent on your PC.
 
-- Download [Arduino 1.8.X](http://arduino.cc/en/Main/Software#toc3) non-admin / zip, extract the zip folder and save the extracted folder somewhere permanent on your PC.
-- Download the firmware file to update from [this list](firmware-repo-list.md). Firmware is an Arduino [sketch](https://www.arduino.cc/en/Tutorial/Sketch).
+2. Download the firmware file to update from [this list](firmware-repo-list.md). Firmware is an Arduino [sketch](https://www.arduino.cc/en/Tutorial/Sketch).
 
-Next, continue to specific instructions for the device you want to update:
+3. Plug the Bpod device into the governing computer's USB port.
 
-[Modules powered by Arduino Due](./arduinodue-update.md) (State Machine v0.5-1.0)
+4. Open the Arduino program folder and run Arduino.exe.
 
-[Modules powered by Teensy 3.X and 4.X](./teensy3x-update.md) (State Machine v2, 2.5 and 2+, Analog Output, Analog Input, DDS, HiFi, Ethernet, Rotary Encoder, Port Array, Valve Driver v2, Examples using Teensy Shield)
+5. Install support for the target Arduino board (if you haven't done this already):
+    - From the left sidebar, open the "Boards Manager".
+    - Select "Teensy" for:
+        - State Machine r2, r2.5, r2+
+        - Analog Output Module
+        - Analog Input Module
+        - Rotary Encoder Module
+        - HiFi Module
+        - Ethernet Module
+        - Valve Driver Module v2
+        - DDS Module
+        - Port Array Module
+    - Select "Arduino SAM boards (32-bits ARM Cortex M3)" for:
+        - State Machine r0.5 - r1.0
+    - Select "Sparkfun SAMD (32-bits ARM Cortex M0+)"  for:
+        - I2C Module
+        - SNES Module
+        - Valve Driver Module v1
+    - Select "Adafruit SAMD (32-bits ARM Cortex M0+)" for:
+        - Ambient Module
 
-[Modules powered by Sparkfun SAMD21 Mini](./samkd21mini-update.md) (ValveDriver v1, I2C, SNES)
+6. From the "Tools" menu, choose the target Arduino board:
+    - Select "Teensy > Teensy4.1" for:
+        - State Machine r2.5, r2+
+        - HiFi Module
+        - Analog Output Module v2
+        - Analog Input Module v2
+    - Select "Teensy > Teensy4.0" for:
+        - Rotary Encoder Module v2
+        - Valve Driver Module v2
+    - Select "Teensy > Teensy 3.6" for:
+        - State Machine r2
+        - Analog Output Module v1
+        - Analog Input Module v1
+    - Select "Teensy > Teensy 3.5" for:
+        - Rotary Encoder Module v1
+        - Bpod Stepper Module v1
+    - Select "Teensy > Teensy 3.2" for:
+        - Port Array Module
+        - Ethernet Module
+    - Select "Sparkfun SAMD > Sparkfun SAMD21 Mini" for:
+        - Valve Driver Module v1
+        - I2C Module
+        - SNES Module
+    - Select "Adafruit SAMD > Adafruit Trinket M0" for:
+        - Ambient Module
 
-[Modules powered by Arduino M0](./arduinom0-update.md) (Examples using Arduino Shield)
+7. From the "Serial Port" menu, choose "COMX" (win) or "/dev/ttySX" (linux) where X is the port number. To find your port number in Windows, choose "Start" and type "device manager" in the search window. In the device manager, scroll down to "Ports (COM & LPT)" and expand the menu. The correct COM port will disappear from the list when the device is unplugged.
+
+8. From the File menu in Arduino, choose "Open" and select the firmware.
+    - Firmware with preconfigured macros for each model is in /Preconfigured/vXX/ where XX is the latest state machine firmware version.
+    - A new window should open with the firmware.
+
+9. In the new window, click the "upload" button (the right-pointing arrow roughly under the "edit" menu).
+
+If all went well, the progress indicator should finish, and be replaced with a message: "Done uploading". In the Output window below, a message should read "Verify successful".

@@ -10,7 +10,7 @@ Displays the settings from the "GUI" subfield of a settings struct. Supports adv
 - In the current version, only numerical parameters are valid.
 - By default, text edit boxes are used to show parameters. Other UI types can be specified.
 - By default, all parameters are clustered on one UI panel. Parameter groups can be specified.
-- When synced, the GUI will display any programmed updates to the parameter values since the last sync. 
+- When synced, the GUI will display any programmed updates to the parameter values since the last sync.
 - If the user manually edited a parameter, this becomes the new value irrespective of automated changes.
 
 **Syntax**
@@ -59,7 +59,7 @@ BpodParameterGUI('init', S);
 % Run 10 trials:
 for currentTrial = 1:10
     S = BpodParameterGUI('sync', S); % Sync parameters with BpodParameterGUI plugin
-    %...Create, send and run state matrix, 
+    %...Create, send and run state matrix,
     %...add and save events
     %...update S with new parameters based on performance
 end
@@ -98,12 +98,12 @@ BpodParameterGUI('init', S);
 
 ![Parameter GUI Example](../images/bpodparametergui-complex-example.png)
 
-In this example the `S.GUI.ManualStimulate = 'ManualStimulate(1)` together with `S.GUIMeta.ManualStimuate.Style = 'pushbutton'` yields a button that will activate (callback) a function when pressed. 
+In this example the `S.GUI.ManualStimulate = 'ManualStimulate(1)` together with `S.GUIMeta.ManualStimuate.Style = 'pushbutton'` yields a button that will activate (callback) a function when pressed.
 
 
 ### `PsychToolboxSoundServer()`
 !!! note
-    PsychToolboxSoundServer will continue to be supported for legacy installations., but is not considered deprecated. For nearly all applications, the [Bpod HiFi Module](../assembly/hifi-module-assembly.md) is a superior method for delivering auditory stimuli. We strongly recommend the HiFi module for new setups, and new projects on existing setups. 
+    PsychToolboxSoundServer will continue to be supported for legacy installations., but is not considered deprecated. For nearly all applications, the [Bpod HiFi Module](../assembly/hifi-module-assembly.md) is a superior method for delivering auditory stimuli. We strongly recommend the HiFi module for new setups, and new projects on existing setups.
 
 **Description**
 
@@ -197,22 +197,22 @@ end
 ### `PsychToolboxVideoPlayer()`
 **Description**
 
-Plays video stimuli on a second video monitor attached to the Bpod computer using [PsychToolbox](http://www.google.com/url?q=http%3A%2F%2Fpsychtoolbox.org%2F&sa=D&sntz=1&usg=AOvVaw1gi7uQVIKvJzFvDqvuDUkQ). 
+Plays video stimuli on a second video monitor attached to the Bpod computer using [PsychToolbox](http://www.google.com/url?q=http%3A%2F%2Fpsychtoolbox.org%2F&sa=D&sntz=1&usg=AOvVaw1gi7uQVIKvJzFvDqvuDUkQ).
 
 A "Sync Patch" is automatically generated for each video frame. The patch is set to a high pixel intensity on the first frame, and alternates between "off" and high intensity for subsequent frames. This allows an optical sensor mounted on the corner of the screen (i.e. [Frame2TTL](https://www.google.com/url?q=https%3A%2F%2Fsites.google.com%2Fsite%2Fframe2ttl%2F&sa=D&sntz=1&usg=AOvVaw1AtIpfRHvM0GME2w1oACEC)) to indicate the actual onset time of each video frame to an acquisition system, providing high precision reaction time and visual evidence update measurements.
 
-- Videos are matrices defined in MATLAB. 
-    - Each video frame is a matrix of 8-bit pixel values (0-255). 
+- Videos are matrices defined in MATLAB.
+    - Each video frame is a matrix of 8-bit pixel values (0-255).
     - Single frames may be a grayscale intensity matrix of dimensions (Y, X) or a color matrix of dimensions (Y, X, 3)
     - The three color layers are intensity matrices for red, green and blue layers respectively.
 - Multiple frames are stacked in an additional dimension to create a video.
-    - e.g. a color video is a 4-D matrix: Y x X x 3 x Nframes 
+    - e.g. a color video is a 4-D matrix: Y x X x 3 x Nframes
 - Videos are loaded to the player and assigned an index (1 - 100).
 - Videos can be played by index, allowing a byte to specify which video to start.
 - Text strings can be loaded by index in place of videos, to display prompts to human subjects
-- By default, playing a video blocks the MATLAB command line. 
+- By default, playing a video blocks the MATLAB command line.
     - In default mode, a loop loads frames into the video buffer. Frames are presented at regular intervals.
-    - In timer mode, a MATLAB timer callback loads each frame into the video buffer. This makes the command line available during playback. 
+    - In timer mode, a MATLAB timer callback loads each frame into the video buffer. This makes the command line available during playback.
 
 **Object**
 
@@ -227,7 +227,7 @@ V = PsychToolboxVideoPlayer(MonitorID, ViewPortSize, ViewPortOffset, SyncPatchSi
 - SyncPatchSize = [X, Y] dimensions of the sync patch (units = pixels)
 - SyncPatchYOffset = distance of sync patch from bottom of the window (in pixels)
 
-The PsychToolboxVideoPlayer is controlled in 2 ways: 
+The PsychToolboxVideoPlayer is controlled in 2 ways:
 - Setting the PsychToolboxVideoPlayer object's fields
 - Calling the PsychToolboxVideoPlayer object's functions
 
@@ -293,17 +293,17 @@ clear V
 
 **Example**
 
-This code creates a noise video, loads it to the video player, plays it and then closes the player. 
+This code creates a noise video, loads it to the video player, plays it and then closes the player.
 ```matlab
 MyVideo = (rand(480,640, 30)*255); % Create noise video
 % Initialize video player for a 640 x 480 video, with a 30 x 10 sync patch
-V = PsychToolboxVideoPlayer(2, [640 480], [0 0], [30 10], 0); 
+V = PsychToolboxVideoPlayer(2, [640 480], [0 0], [30 10], 0);
 % Load noise video into player at index 1
-V.loadVideo(1, myVideo); 
+V.loadVideo(1, myVideo);
 % play the video
-V.play(1); 
+V.play(1);
 % close the video player
-clear V 
+clear V
 ```
 
 An example behavior protocol using PsychToolboxVideoServer is given in the Bpod_Gen2 repository, [here](https://www.google.com/url?q=https%3A%2F%2Fgithub.com%2Fsanworks%2FBpod_Gen2%2Ftree%2Fmaster%2FExamples%2FProtocols%2FVideo%2FVideo2AFC&sa=D&sntz=1&usg=AOvVaw3tJGftyhjip0cjSPR0-bR7).
@@ -358,11 +358,11 @@ end
 ### `SideOutcomePlot()`
 **Description**
 
-Plots correct sides and trial outcomes for a two-sided decision task. 
+Plots correct sides and trial outcomes for a two-sided decision task.
 
 - Future trials are indicated with filled blue circles.
 - The current trial is indicated with a black cross.
-- Correct trials are indicated in green. Filled circles indicate rewarded trials, unfilled circles indicate unrewarded trials.. 
+- Correct trials are indicated in green. Filled circles indicate rewarded trials, unfilled circles indicate unrewarded trials.
 - Error trials are indicated in red. Filled circles indicate punished trials, unfilled circles indicate unpunished trials.
 - Trials with no decision response are indicated as unfilled blue circles.
 
@@ -387,7 +387,7 @@ SideOutcomePlot(AxisHandle,'update',CurrentTrial,TrialSides,Outcomes)
 - AxisHandle: The handle of the axes where you intend display the plot
 - TrialSides: A vector listing the correct response side for all trials in the session. For each trial in the vector, right = 0, left = 1.
 - CurrentTrial: The current trial number (will be marked with a cross)
-- Outcomes: A vector for each completed trial, listing outcomes: 
+- Outcomes: A vector for each completed trial, listing outcomes:
     - -1 = error, unpunished (unfilled red circle)
     - 0 = error, punished (filled red circle)
     - 1 = correct, rewarded (filled green circle)
@@ -400,7 +400,7 @@ SideOutcomePlot(AxisHandle,'update',CurrentTrial,TrialSides,Outcomes)
 
 **Example**
 
-This code initializes the outcome plot in its own window, and updates it on each trial. All correct trials are rewarded, and all error trials are punished. 
+This code initializes the outcome plot in its own window, and updates it on each trial. All correct trials are rewarded, and all error trials are punished.
 
 ```matlab
 TrialTypes = ceil(rand(1,5000)*2); % Trial types randomly interleaved, type 1 or 2.
@@ -408,15 +408,15 @@ TrialTypes = ceil(rand(1,5000)*2); % Trial types randomly interleaved, type 1 or
 
 %% Initialize plots
 % Create a figure for the outcome plot
-BpodSystem.ProtocolFigures.OutcomePlotFig = figure('Position', [200 200 1000 200],'name','Outcome plot',... 'numbertitle','off', 'MenuBar', 'none', 'Resize', 'off'); 
+BpodSystem.ProtocolFigures.OutcomePlotFig = figure('Position', [200 200 1000 200],'name','Outcome plot',... 'numbertitle','off', 'MenuBar', 'none', 'Resize', 'off');
 
 % Create axes for the outcome plot
-BpodSystem.GUIHandles.OutcomePlot = axes('Position', [.075 .3 .89 .6]); 
+BpodSystem.GUIHandles.OutcomePlot = axes('Position', [.075 .3 .89 .6]);
 SideOutcomePlot(BpodSystem.GUIHandles.OutcomePlot,'init',2-TrialTypes);
 
 % Run 1000 trials:
 for currentTrial = 1:1000
-    % ...Create, send and run state machine with a state called "Reward" 
+    % ...Create, send and run state machine with a state called "Reward"
     % and a state called "Punish", add and save events...
     Outcomes = zeros(1,BpodSystem.Data.nTrials);
     for x = 1:BpodSystem.Data.nTrials
@@ -439,7 +439,7 @@ Plots trial types and trial outcomes for a customizable window of trials surroun
 
 - Future trials are indicated with filled blue circles.
 - The current trial is indicated with a black cross.
-- Correct trials are indicated in green. Filled circles indicate rewarded trials, unfilled circles indicate unrewarded trials.. 
+- Correct trials are indicated in green. Filled circles indicate rewarded trials, unfilled circles indicate unrewarded trials..
 - Error trials are indicated in red. Filled circles indicate punished trials, unfilled circles indicate unpunished trials.
 - Trials with no decision response are indicated as unfilled blue circles.
 
@@ -463,7 +463,7 @@ TrialTypeOutcomePlot(AxisHandle,'update',CurrentTrial,TrialTypes,Outcomes)
 <!-- link for handle reference could be improved -->
 - TrialTypes: A vector listing the trial types for all trials in the session. Each trial type must be a positive integer.
 - CurrentTrial: The current trial number (will be marked with a cross)
-- Outcomes: A vector for each completed trial, listing outcomes: 
+- Outcomes: A vector for each completed trial, listing outcomes:
     - -1 = error, unpunished (unfilled red circle)
     - 0 = error, punished (filled red circle)
     - 1 = correct, rewarded (filled green circle)
@@ -476,7 +476,7 @@ TrialTypeOutcomePlot(AxisHandle,'update',CurrentTrial,TrialTypes,Outcomes)
 
 **Example**
 
-This code initializes the trial type outcome plot in its own window, and updates it on each trial. All correct trials are rewarded, and all error trials are punished with time-out. 
+This code initializes the trial type outcome plot in its own window, and updates it on each trial. All correct trials are rewarded, and all error trials are punished with time-out.
 
 ```matlab
 TrialTypes = ceil(rand(1,5000)*2); % Trial types randomly interleaved, type 1 or 2
@@ -490,7 +490,7 @@ TrialTypeOutcomePlot(BpodSystem.GUIHandles.OutcomePlot,'init',TrialTypes);
 
 % Run 1000 trials:
 for currentTrial = 1:1000
-    %...Create, send and run state matrix with a state called "Reward" 
+    %...Create, send and run state matrix with a state called "Reward"
     %   and a state called "Punish", add and save events...
     Outcomes = zeros(1,BpodSystem.Data.nTrials);
     for x = 1:BpodSystem.Data.nTrials
@@ -506,10 +506,50 @@ for currentTrial = 1:1000
 end
 ```
 
+### `TotalRewardDisplay()`
+**Description**
+Displays the total amount of liquid reward delivered in the current session.
+* Units are shown in microliters until 1ml is reached, and subsequently in ml.
+* The display is shown here for an example session:
+
+![Alt text](../images/totalreward.jpg)
+
+**Syntax**
+On first call:
+```matlab
+TotalRewardDisplay('init');
+```
+On subsequent calls:
+```matlab
+TotalRewardDisplay('add', RewardAmount);
+```
+
+**Parameters**
+
+- RewardAmount: The amount of reward earned in the current trial
+
+**Returns**
+
+- None
+
+**Example**
+```matlab
+% This code initializes the Total Reward Display plugin, and updates it on each trial.
+RewardAmount = 5;
+% Run 1000 trials:
+for currentTrial = 1:1000
+...
+% Create, send and run state matrix with a state called "Reward", add and save events
+    if ~isnan(BpodSystem.Data.RawEvents.Trial{currentTrial}.States.Reward(1))
+        TotalRewardDisplay('add', RewardAmount);
+     end
+end
+```
+
 ### `StateTiming()`
 **Description**
 
-The StateTiming plot shows the time course of states in the previous trial. 
+The StateTiming plot shows the time course of states in the previous trial.
 
 StateTiming was contributed by Florian Rau in Poulet Lab at MDC Berlin.
 

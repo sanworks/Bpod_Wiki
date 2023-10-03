@@ -1,19 +1,4 @@
-# Using the Bpod console
-
-## Bpod files
-
-
-```
-Bpod Local/ # Contains user-specific files like protcols, calibrations, saved data
-    Calibration files/
-    Data/
-    Protocols/
-    Settings/    # Bpod saves 
-Bpod_Gen2/    # Contains files required for Bpod to run
-```
-
-!!! note
-    The expected location for the 'Bpod Local' folder is in same folder as 'Bpod_Gen2' is located.
+# Using the Bpod Console GUI
 
 ## Bpod Console
 The Bpod Console will appear when `Bpod` is launched and the device successfully connects:
@@ -32,16 +17,16 @@ The console is your starting point for running protocols with Bpod. It has 5 sec
     - This section contains an array of tabs. Each tab selects a panel of - override controls for either the state machine, or a connected module.
     - If no module is connected, the tab will display "Serial N", where N is - the number of the physical port (see Serial3 in image above)
     - If a module is connected, it displays as ModuleNameN, where N is the Nth - instance of the module type found.
-        - For instance, two SNES modules on module ports 2 and 3 would appear in - separate tabs as SNES1 and SNES2. 
+        - For instance, two SNES modules on module ports 2 and 3 would appear in - separate tabs as SNES1 and SNES2.
     - The state machine panel provides buttons to override behavior ports, BNC - and Wire interfaces.
     - The module panel defaults to a serial terminal, which exchanges data - between the state machine and the selected module.
     - Custom override panels for modules can be created, and stored in /Bpod/- Functions/Override Panels/
     - The number of panels shown will depend on the configuration of the state - machine hardware and firmware.
 - Config
     - Contains four buttons: Module Refresh, Settings, Module USB configuration, System Properties
-    - Module Refresh (top-left) 
+    - Module Refresh (top-left)
         - Requests a self-description from connected modules
-        - Updates the state machine's list of valid events and outputs. 
+        - Updates the state machine's list of valid events and outputs.
         - Displays each module in a tab in the Manual Override section of the GUI
     - Settings (top-right)
         - Launches a menu to configure Bpod settings:
@@ -80,7 +65,7 @@ The console is your starting point for running protocols with Bpod. It has 5 sec
 
 **Additional information**
 
-- While the console is open, the state machine's indicator LED will glow green. This indicates that the state machine is ready to communicate with the Bpod software. 
+- While the console is open, the state machine's indicator LED will glow green. This indicates that the state machine is ready to communicate with the Bpod software.
 - If you close the Bpod console, the state machine's indicator will glow blue, to indicate that it is disconnected from the program. Running the Bpod command while the console window is open results in an error.
 - The console may contain some channels that appear grayed out. These channels are not available on the state machine you have connected.
 <!-- - Different state machine models are supported. For instance, the pocket state machine generates the following console: image is not included in the original wiki-->
@@ -98,7 +83,7 @@ The Launch Manager appears when a protocol is run from the Bpod Console.
     - Clicking "-" deletes a protocol
     - Clicking the "edit" icon launches the protocol's main .m file in the MATLAB editor.
 - **Subject panel**
-    - Lists the test subjects registered for the selected protocol. 
+    - Lists the test subjects registered for the selected protocol.
     - Clicking "+" adds a test subject to the list. It also creates a folder for the test subject in /Bpod Local/Data/
     - Clicking "-" removes the test subject's folder and all of the data and settings within it.
     - You will be warned before this happens, and forced to click two check-boxes confirming the deletion.
@@ -136,7 +121,7 @@ Solenoid valves connected to each behavior port (we recommend [these](http://www
 <!-- ### Step 1. Launch the calibration manager -->
 <!-- Original wiki has no step 2 heading -->
 
-- From the [Bpod console](../user-guide/index.md#bpod-console), click "Settings" (wrench icon). You will see a settings menu: 
+- From the [Bpod console](#bpod-console), click "Settings" (wrench icon). You will see a settings menu:
 
 ![Alt text](../images/console-settings-menu.png)
 
@@ -147,8 +132,8 @@ Solenoid valves connected to each behavior port (we recommend [these](http://www
 
 - In the left list box, you can select one of the 8 valves to view its measurements and calibration curve in the right panels.
 - The "Plus" button will manually add a new amount to be measured. This will appear in red as a "Pending measurement".
-- The "Minus" button will permanently delete the selected measurement. 
-    - The "Suggest Points" button prompts you for a liquid amount range of interest, and automatically adds the best pending measurements: 
+- The "Minus" button will permanently delete the selected measurement.
+    - The "Suggest Points" button prompts you for a liquid amount range of interest, and automatically adds the best pending measurements:
 
 ![Alt text](../images/liquid-measurements.png)
 
@@ -159,3 +144,18 @@ Solenoid valves connected to each behavior port (we recommend [these](http://www
 ![Alt text](../images/liquid-curve-test.png)
 
 <!-- this function could be improved if goal is just to see if one liquid port is doing its job -->
+
+## Bpod files
+
+
+```
+Bpod Local/ # Contains user-specific files like protcols, calibrations, saved data
+    Calibration files/
+    Data/
+    Protocols/
+    Settings/    # Bpod saves
+Bpod_Gen2/    # Contains files required for Bpod to run
+```
+
+!!! note
+    The default location for the 'Bpod Local' folder is in same folder where 'Bpod_Gen2' is located.

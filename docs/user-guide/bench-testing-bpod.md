@@ -1,5 +1,5 @@
 # Bench-testing Bpod
-This Bench-testing procedure will verify connectivity, but will not validate reliability or detect problems with Arduino. An improved bench testing procedure will be added soon. 
+This Bench-testing procedure for the Bpod State Machine will verify connectivity, but will not validate reliability or detect problems with Arduino. An improved bench testing procedure will be added soon. 
 
 ## Setup
 
@@ -19,7 +19,7 @@ This Bench-testing procedure will verify connectivity, but will not validate rel
 
 ## Sync port (Bpod 0.5 only)
 
-1. Connect the oscilloscope BNC wire ground to the right-most spring terminal ground. 
+1. Connect the oscilloscope BNC wire ground to the right-most spring terminal ground.
 2. Run /Bpod/Functions/Example Matrices/Cycle_128_States.m. This will generate a state matrix with 128 states.
 3. Upload the state matrix: SendStateMatrix(sma);
 4. Run the state matrix: `RunStateMatrix`;
@@ -30,14 +30,14 @@ This Bench-testing procedure will verify connectivity, but will not validate rel
 1. Connect Arduino Leonardo to power, and connect an Ethernet cable between the Bpod Arduino shield and Serial port 1. Reboot Leonardo with the "reset" button.
 2. Run /Bpod/Functions/Example Matrices/TriggerSerialDevice.m
 3. Run SendStateMatrix(sma);
-4. When you run the state matrix, you should see the LED on Arduino Leonardo flash twice, indicating that byte "2" was received. 
+4. When you run the state matrix, you should see the LED on Arduino Leonardo flash twice, indicating that byte "2" was received.
 5. Plug Leonardo into Serial port 2. When you run the state matrix, it should flash 4 times, indicating that byte "4" was received.
 
 ## Hardware serial ports (for Bpod 0.7+)
 
 1. Connect Arduino M0 to power, and connect an Ethernet cable between the Bpod Arduino shield and Serial port 1. Reboot M0 with the "reset" button.
 2. Press the "Refresh" button on the console GUI. A tab should appear, labeled "EchoModule1".
-3. Open the EchoModule1 tab, and type a message into the terminal. The echo module should receive it, and echo it back. 
+3. Open the EchoModule1 tab, and type a message into the terminal. The echo module should receive it, and echo it back.
 4. Verify that the echo module is visible on all 3 ports.
 
 ## BNC and wire terminal outputs
@@ -46,8 +46,8 @@ This Bench-testing procedure will verify connectivity, but will not validate rel
 2. Connect each wire terminal output (spring terminals 2-5 from the left) to the oscilloscope and override them from the console. You should see 3.3V when high and 0V when low.
 
 ## BNC and wire terminal inputs
-1. Connect a TTL source (we use Pulse Pal) to Bpod's BNC input channel 1. 
-2. Run the Operant protocol. 
+1. Connect a TTL source (we use Pulse Pal) to Bpod's BNC input channel 1.
+2. Run the Operant protocol.
 3. You should see the BNC 1 icon turn green each time the BNC line is high, and "Last Event" should display "BNC1High".  
 4. Repeat for BNC input 2.
 5. To test the wire input channels (also 5V tolerant), select each one from Console > Settings > Port, and un-check all others. Then repeat the BNC input channel test.

@@ -95,3 +95,7 @@ clear H
 
 - Clearing the object releases the serial port, so other applications can access it.
 - If a BpodHiFi object is created locally inside a MATLAB function, the object is cleared automatically when the function returns.
+
+## Example Protocol
+
+An example Bpod protocol using the HiFi module is given [here](https://github.com/sanworks/Bpod_Gen2/tree/master/Examples/Protocols/Sound/HiFiSound2AFC)

@@ -1,7 +1,7 @@
 <h1 style="text-align: center;">Welcome to the Bpod Wiki</h1>
 
 <div style="font-family: 'Aldrich', monospace; font-size: 112px;">
-    <img align="center" src="/wiki-assets/WikiWelcome.png">
+    <img align="center" src="/images/WikiWelcome.png">
 </div>
 <p align="center">
     <em>Bpod: An open source platform for rodent behavior measurement & real-time stimulus control.</em>
@@ -44,7 +44,7 @@ title: Bpod system concept
 ---
 %%{init: { 'theme': 'default', 'sequence': { 'mirrorActors': false } }}%%
 sequenceDiagram
-participant matlab as Computer
+participant matlab as Win/Linux PC
 participant bpod as Bpod State Machine
 participant external as Hardware Modules
 actor subject as Test Subject
