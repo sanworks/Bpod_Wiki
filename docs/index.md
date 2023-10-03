@@ -1,7 +1,7 @@
 <h1 style="text-align: center;">Welcome to the Bpod Wiki</h1>
 
 <div style="font-family: 'Aldrich', monospace; font-size: 112px;">
-    <img align="center" src="../images/wiki-welcome.png">
+    <img align="center" src="/images/wiki-welcome.png">
 </div>
 <p align="center">
     <em>Bpod: An open source platform for rodent behavior measurement & real-time stimulus control.</em>
