@@ -21,7 +21,7 @@
 
 !!! important note
 
-    :construction: The Bpod Wiki is being migrated here from [Google Sites](https://sites.google.com/site/bpoddocumentation/home?authuser=0) - a major community contribution by [George Stuyt](https://github.com/ogeesan)! The legacy wiki will remain available to support old links, but its content will be frozen as of October 1, 2023.
+    :construction: The Bpod Wiki has been migrated here from [Google Sites](https://sites.google.com/site/bpoddocumentation/home?authuser=0) - a major community contribution by [George Stuyt](https://github.com/ogeesan)! The legacy wiki will remain available to support old links, but its content will be frozen as of October 1, 2023.
 
 Bpod highlights:
 
