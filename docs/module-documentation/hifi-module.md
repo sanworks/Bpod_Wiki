@@ -2,7 +2,7 @@
 
 ## Description
 
-BpodHiFi plays audio waveforms on trigger, using the [Bpod HiFi Module](../assembly/hifi-module-assembly.md).
+BpodHiFi interfaces MATLAB with the the [Bpod HiFi Module](../assembly/hifi-module-assembly.md).
 
 Example protocols using `BpodHiFi()` are given [here](https://www.google.com/url?q=https%3A%2F%2Fgithub.com%2Fsanworks%2FBpod_Gen2%2Fblob%2Fmaster%2FExamples%2FProtocols%2FSound%2FHiFiSound2AFC%2FHiFiSound2AFC.m&sa=D&sntz=1&usg=AOvVaw2x_38llCit2QSKRBKZuvW_), [here](https://www.google.com/url?q=https%3A%2F%2Fgithub.com%2Fsanworks%2FBpod_Gen2%2Fblob%2Fmaster%2FExamples%2FProtocols%2FSound%2FHiFiSound2AFC_TrialManager%2FHiFiSound2AFC_TrialManager.m&sa=D&sntz=1&usg=AOvVaw0T5u2m80bMIablE4Z79Ztc) and [here](https://www.google.com/url?q=https%3A%2F%2Fgithub.com%2Fsanworks%2FBpod_Gen2%2Fblob%2Fmaster%2FExamples%2FProtocols%2FSound%2FHiFiSound2AFC_Synth%2FHiFiSound2AFC_Synth.m&sa=D&sntz=1&usg=AOvVaw3XOE3SsWGE0TR6cpehFDbt).
 
@@ -76,8 +76,8 @@ The HiFi module is controlled in 2 ways:
     - Function will retry up to 5 times automatically if the waveform was not successfully transmitted.
 - push()
     - Sets all newly loaded sounds to be the current sounds, and frees their loading buffers for new sounds.
-- play(soundNumber)
-    - Plays a sound.
+- play(soundIndex)
+    - Plays a sound, specified by index.
 - stop()
     - Stops playback
 

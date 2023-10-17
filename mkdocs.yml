@@ -75,6 +75,7 @@ nav:
           - module-documentation/pulsepal-module.md
         - module-documentation/hifi-module.md
         - module-documentation/rotary-encoder-module.md
+        - module-documentation/valve-driver-module.md
         - module-documentation/dds-module.md
         - module-documentation/I2C-messenger-module.md
       - Example Code:
