@@ -1,6 +1,4 @@
 # RotaryEncoderModule()
-A rotary encoder is a device that sends information related to its angular rotation. This module would be useful for tasks involving running wheels or choice wheels.
-
 !!! important
     There are two versions of the Rotary Encoder Module with non-overlapping feature sets. Both modules are controlled by the `RotaryEncoderModule` class. Functions specific to each version are indicated with:
 
@@ -10,7 +8,7 @@ A rotary encoder is a device that sends information related to its angular rotat
 
 ## Description
 
-`RotaryEncoderModule()` provides an object to interface with the Bpod rotary encoder module. The rotary encoder module is optimized to integrate a 1024-position quadrature rotary encoder (e.g. Yumo E6B2-CWZ3E) with Bpod.
+`RotaryEncoderModule` interfaces MATLAB with the [Bpod Rotary Encoder Module](../assembly/rotary-encoder-module-assembly.md). The rotary encoder module is optimized to integrate a 1024-position quadrature rotary encoder (e.g. Yumo E6B2-CWZ3E) with Bpod.
 
 A `RotaryEncoderModule` object is initialized with the following syntax:
 ```matlab

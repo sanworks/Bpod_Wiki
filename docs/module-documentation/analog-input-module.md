@@ -1,17 +1,16 @@
-# AnalogInputModule()
+# BpodAnalogIn()
 ## Description
 
-The BpodAnalogIn class provides an object representing Bpod's [Analog Input Module](../assembly/analog-input-module-assembly.md) (a general purpose voltage ADC with a dedicated microcontroller).
+The BpodAnalogIn class interfaces MATLAB with the [Bpod Analog Input Module](../assembly/analog-input-module-assembly.md)
 
-The Analog Input Module has 8 input channels with 12 bits of resolution and configurable ranges up to +/-10V.
+The Analog Input Module is a general purpose voltage ADC with a dedicated microcontroller. It has 8 input channels and configurable ranges up to +/-12.5V.
 
 The object has functions to:
 
-- Acquire data to a microSD card, on trigger from the Bpod state machine
-- Return acquired data to MATLAB via USB
 - Stream live analog input data to USB for online viewing and data capture
 - Stream live data to a Bpod output module (DDS or Analog Output).
 - Set voltage thresholds to generate discrete behavior events, which can be handled by the state machine
+- Acquire data to a microSD card, on trigger from the Bpod state machine
 
 After running Bpod, an BpodAnalogIn object is initialized with the following syntax:
 
