@@ -33,7 +33,7 @@ Firmware for the analog output module is available [here](https://www.google.com
 \*The analog output module is a general purpose DAC. High definition sound playback is available via the [HiFi module](../serial-interfaces/hifi-module-serial-interface.md).
 ## Bill of Materials
 ### 4Ch AOM v1
-<iframe width=1000 height=300 jsname="L5Fo6c" jscontroller="usmiIb" jsaction="rcuQ6b:WYd;" class="YMEQtf L6cTce-purZT L6cTce-pSzOP KfXz0b" sandbox="allow-scripts allow-popups allow-forms allow-same-origin allow-popups-to-escape-sandbox allow-downloads allow-modals" frameborder="0" aria-label="Spreadsheet, Raspberry Pi Shim BOM" allowfullscreen="" src="https://docs.google.com/spreadsheets/d/1sg_CjjEeOa-BNOvEDrPs1JLkYYPr1-5xbWjqEkAero8/htmlembed?authuser=0"></iframe>
+<iframe width=1000 height=300 jsname="L5Fo6c" jscontroller="usmiIb" jsaction="rcuQ6b:WYd;" class="YMEQtf L6cTce-purZT L6cTce-pSzOP KfXz0b" sandbox="allow-scripts allow-popups allow-forms allow-same-origin allow-popups-to-escape-sandbox allow-downloads allow-modals" frameborder="0" aria-label="Spreadsheet, Raspberry Pi Shim BOM" allowfullscreen="" src="https://docs.google.com/spreadsheets/d/1jXu4LcoEx13Grgtm0kluTC1ethmNN8rPpFjH73usqFI/htmlembed?authuser=0"></iframe>
 
 ### 4Ch AOM v2
 <iframe width=1000 height=600 jsname="L5Fo6c" jscontroller="usmiIb" jsaction="rcuQ6b:WYd;" class="YMEQtf L6cTce-purZT L6cTce-pSzOP KfXz0b" sandbox="allow-scripts allow-popups allow-forms allow-same-origin allow-popups-to-escape-sandbox allow-downloads allow-modals" frameborder="0" aria-label="Spreadsheet, AnalogOutputModule v2 BOM" allowfullscreen="" src="https://docs.google.com/spreadsheets/d/1Du9rV7v4Srbf4028XDVEv7t-nSe9Na5oGJ34DrM0urQ/htmlembed?authuser=0"></iframe>

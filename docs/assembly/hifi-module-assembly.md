@@ -4,7 +4,7 @@ The Bpod HiFi Module stores audio waveforms and play them back on trigger.
 
 Audio waveforms are rendered by [HiFiBerry](https://www.google.com/url?q=https%3A%2F%2Fwww.hifiberry.com%2F&sa=D&sntz=1&usg=AOvVaw0MmWWvePk-wEiPqorUFfaO) [DAC2 Pro](https://www.google.com/url?q=https%3A%2F%2Fwww.hifiberry.com%2Fdocs%2Fdata-sheets%2Fdatasheet-dac2-pro%2F&sa=D&sntz=1&usg=AOvVaw2UpAYi7CokH-lqQp_sSOAo) and [DAC2 HD](https://www.google.com/url?q=https%3A%2F%2Fwww.hifiberry.com%2Fdocs%2Fdata-sheets%2Fdatasheet-dac-hd%2F&sa=D&sntz=1&usg=AOvVaw15LwCjfSITr3cyBx33L5hl) cards.
 
-Our [firmware](https://www.google.com/url?q=https%3A%2F%2Fgithub.com%2Fsanworks%2FBpod_HiFi_Firmware&sa=D&sntz=1&usg=AOvVaw2ZMAy5LNY3KO1RRxuJC9g3) directly interfaces these cards with [Teensy 4.1](https://www.google.com/url?q=https%3A%2F%2Fwww.pjrc.com%2Fstore%2Fteensy41.html&sa=D&sntz=1&usg=AOvVaw0Ix4K9Z2Inj9R6DoE9DxJP) for superior timing\n\s+\n precision.
+Our [firmware](https://www.google.com/url?q=https%3A%2F%2Fgithub.com%2Fsanworks%2FBpod_HiFi_Firmware&sa=D&sntz=1&usg=AOvVaw2ZMAy5LNY3KO1RRxuJC9g3) directly drives these cards with [Teensy 4.1](https://www.google.com/url?q=https%3A%2F%2Fwww.pjrc.com%2Fstore%2Fteensy41.html&sa=D&sntz=1&usg=AOvVaw0Ix4K9Z2Inj9R6DoE9DxJP) for superior timing precision.
 
 An isolated TTL output channel signals audio playback onset and offset.
 
@@ -13,6 +13,8 @@ Synth functions are provided for programmatic control of white noise and pure to
 Hardware for the two modules is identical except for the enclosure and HiFiBerry card used.
 
 A single firmware file can be set to compile for either module.
+
+More details are available in the product release article [here](https://sanworks.io/news/viewArticle.php?articleID=HiFi01).
 
 Key specs are:
 
@@ -26,7 +28,7 @@ Key specs are:
 - Audio signal voltage range: +/- 3V
 - TTL sync voltage: 3.3V
 - Max AM onset/offset Envelope samples: 2000
-- Synth waveforms supported: White Noise, Sinef
+- Synth waveforms supported: White Noise, Sine
 
 The HiFi module is controlled from MATLAB with the [BpodHiFi class](../module-documentation/hifi-module.md).
 

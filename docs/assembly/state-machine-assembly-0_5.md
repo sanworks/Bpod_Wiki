@@ -2,43 +2,34 @@
 
 Bpod's state machine module can be assembled in as little as one hour at a soldering bench. Here's how.
 
-1. Order all parts in the Bill of Materials
+1. Order all parts in the [Bill of Materials](/assembly/state-machine-assembly-0_5/#bill-of-materials)
     - These parts can be purchased from commercial suppliers with two exceptions:
-        - The printed circuit board. We have previously used SeeedStudio's [FusionPCB service](https://www.google.com/url?q=https%3A%2F%2Fwww.seeedstudio.com%2Ffusion_pcb.html&sa=D&sntz=1&usg=AOvVaw3L3Y1lhecWxtoORTkwuVV0) as follows:
-            - **QTY:** 10
-            - **PCB Layer:** 2
-            - **PCB Thickness:** 1.6mm
-            - **PCB Dimension:** 10cm max X 15cm max
-            - **PCB Color:** green
-            - **Surface Finish:** HASL
-            - This should work out to ~$5.50 per board for an order of 10 boards (Jan 2014). Select "Next".
-            - Select C:\\Bpod\\CAD\\PCB\\BpodDevice\\BpodGerber.zip and finish the order.
+        - The printed circuit board. We have previously used [JLCPCB](https://jlcpcb.com/) as follows:
+            - Select 'Add GERBER file'. From the [Bpod-CAD](https://github.com/sanworks/Bpod-CAD) repository, use \\PCB\\BpodStateMachine\\r0.5\\Bpod GERBER.zip
+            - Select specs:
+                - **PCB Layer:** 2
+                - **PCB Thickness:** 1.6mm
+                - **Surface Finish:** Lead Free HASL
+            - Other default board specs are OK
+            - This should work out to ~$8.50 USD per board for an order of 10 boards (Oct 2023).
+
         - The acrylic enclosure. We have previously used Pololu's [Custom laser cutting service](http://www.google.com/url?q=http%3A%2F%2Fwww.pololu.com%2Fproduct%2F749&sa=D&sntz=1&usg=AOvVaw1kRSq-BYSIMpmunR-C21L0) as follows:
             - Select "Request a Quote"
             - Next to "My Files" click "Browse" and select C:\\Bpod\\CAD\\Enclosure\\BpodEnclosure\_r0\_5\_X.cdr, where X is the latest version number available.
             - Next to "Quantity" enter "N copies of layout provided" to order N Bpod enclosures.
             - Under "Material Selection" choose "Use This Material" to the right of the line: 3.0mm (1/8") / translucent / clear matte
             - Acknowledge the limitations and submit the quote request. Once the quote is provided (1-2 days), place an order for the enclosure.
+
 2. Gather tools. You'll need:
     - A clean soldering iron and sponge
     - Solder
-3. Follow the assembly instructions.
 
 ## Assembly Instructions
-Before assembly, ensure that you have all parts specified in the bill of materials in appropriate quantities. You will also need a soldering iron, solder, wire cutters, water, a soldering sponge, a small Phillips head screwdriver, and about one hour if this is your first time building a Bpod.
-
-The order of assembly below is determined by height of the components on the board, for easy positioning during soldering.
+Before assembly, ensure that you have all parts specified in the [Bill of Materials](/assembly/state-machine-assembly-0_5/#bill-of-materials) in appropriate quantities. You will also need a soldering iron, solder, wire cutters, a wet soldering sponge, a small Phillips head screwdriver, and about one hour if this is your first time building a Bpod State Machine.
 
 If you are new to soldering a circuit board with ICs, see [this < 2-minute video tutorial](https://www.youtube.com/watch?v=VgcPxdnjwt4) for power-tips.
 
-First, we will solder components into the printed circuit board. It looks like this:
-
-!!! note
-    Image missing in original wiki
-
-<!-- todo: Ask Josh about figure 1 -->
-
-Figure 1: The Bpod r0.5 printed circuit board
+First, we will solder components into the printed circuit board.
 
 ### Step 1: Add resistors, MOSFETs and status LED
 
@@ -58,7 +49,7 @@ The board should now appear as illustrated in Figure 2.
 
 ![Alt text](../images/sm-05-figure2.png)
 
-*Figure 2: The board after adding resistors, MOSFETs and status LEDs*
+*Figure 1: The board after adding resistors, MOSFETs and status LEDs*
 
 ### Step 2: Add integrated circuits
 
@@ -76,7 +67,7 @@ The board should now appear as illustrated in Figure 3.
 
 ![Alt text](../images/sm-05-figure3.png)
 
-*Figure 3: The board after adding ICs*
+*Figure 2: The board after adding ICs*
 
 ### Step 3: Add Arduino headers, rectangular pin headers and the TDK Lambda integrated voltage converter
 
@@ -92,13 +83,13 @@ Instructions:
 - Solder the 6-pin Arduino header. Do not cut the leads.
 - Cut the 2x36-pin male header in half with a wire cutter to make a 2x18. Place the board on top of it so the silver side of the pins sticks through the board, and solder from the top as illustrated in Figure 4.
 - Place the board on top of the 2x3 female header, and solder from the top.
-- Solder the voltage converter. 
+- Solder the voltage converter.
 
 The board should now appear as illustrated in Figure 4.
 
 ![Alt text](../images/sm-05-figure4.png)
 
-*Figure 4: The board after adding headers and voltage converter*
+*Figure 3: The board after adding headers and voltage converter*
 
 ### Step 4: Add Ethernet jacks, spring terminal and BNC jacks
 
@@ -116,7 +107,7 @@ The completed board should now appear as illustrated in Figure 5.
 
 ![Alt text](../images/sm-05-figure5.png)
 
-*Figure 5: The completed board after adding Ethernet jacks, spring terminals and BNC jacks*
+*Figure 4: The completed board after adding Ethernet jacks, spring terminals and BNC jacks*
 
 ### Step 5: Add stand-offs and Arduino Due
 
