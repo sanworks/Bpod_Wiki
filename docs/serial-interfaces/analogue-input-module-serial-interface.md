@@ -52,9 +52,7 @@ The SerialUSB command interface allows configuration of the analog input module 
     - The module replies with the following sequence of bytes:
         - 161 (1 byte;  a unique acknowledgement byte)
         - firmwareVersion (4 bytes; 32-bit int)
-- '**D**' (ASCII 68): **Retrieve captured analog data
-
- from the module's microSD card**. The module replies with the following bytes:
+- '**D**' (ASCII 68): **Retrieve captured analog data from the module's microSD card**. The module replies with the following bytes:
     - nSamplesAcquired (4 bytes; 32-bit int); number of samples acquired since last call to ['L' 1] (see above)
     - for (each sample)
         - for (each actively sampled channel)
