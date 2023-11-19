@@ -10,7 +10,7 @@ The text of the license is available here:
 
 [http://www.gnu.org/copyleft/gpl.html](http://www.gnu.org/copyleft/gpl.html)
 
-In brief, you may build and modify Bpod's hardware and software to suit your needs, and even release your own derivative product with your own branding (see brand restriction below), so long as that product's software and hardware remains fully open source, and made freely available to the public under GNU v3.0.
+In brief, you may build and modify Bpod's hardware and software to suit your needs, and even release your own derivative product with your own branding (see brand restriction below), so long as that product's software and hardware remains fully open source, and made freely available to the public under GNU GPL v3.0.
 
 Your derivative work must include a statement detailing your changes to the original code and CAD.
 
