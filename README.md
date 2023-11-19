@@ -3,6 +3,8 @@ This repository is used to build the user guide and primary documentation resour
 
 Go to [sanworks.github.io/Bpod_Wiki](https://sanworks.github.io/Bpod_Wiki) to view the documentation.
 
+### Contributions
+
 We welcome all contributions from the Bpod community! Contributor guidelines are provided in [CONTRIBUTING.md](/CONTRIBUTING.md)
 
 ### Installing and building
