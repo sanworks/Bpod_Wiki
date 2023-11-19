@@ -3,15 +3,7 @@ This repository is used to build the user guide and primary documentation resour
 
 Go to [sanworks.github.io/Bpod_Wiki](https://sanworks.github.io/Bpod_Wiki) to view the documentation.
 
-## Contributing
-All contributions are welcome!
-
-Any problems, from errors, to typos, to unclear phrasing, can be raised as an Issue or Pull Request.
-
-> [!NOTE]
-> Discussion and problems with Bpod itself should be directed to the forums at [sanworks.io/forums](https://sanworks.io/forums/). This repository, and its Issues, is for matters relating to the documentation of Bpod on the documentation site.
-
-This repository's system for Pull Requests follow the GitHub workflow. Contributors fork the repository, create a new (descriptively named) branch out of `main`, work on their changes, and then submit a pull request back into `main` when their changes are ready to be implemented.
+We welcome all contributions from the Bpod community! Contributor guidelines are provided in [Contributing.md](/Contributing.md)
 
 ### Installing and building
 [MkDocs](https://www.mkdocs.org/) and the [Material theme](https://squidfunk.github.io/mkdocs-material/) are used to build the site.
