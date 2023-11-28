@@ -1,6 +1,6 @@
 # MATLAB Software for Bpod
 
-<img src="../../images/Matlab_Logo.png" alt="drawing" width="200"/><br>
+<img src="../images/matlab-logo.png" alt="drawing" width="200"/><br>
 
 This section contains supporting documentation for Bpod's MATLAB software.
 
