@@ -1,8 +1,8 @@
 # Using Bonsai
 
-[Bonsai](https://bonsai-rx.org/) is an open source software tool for processing data streams, developed by [Goncalo Lopes](https://neurogears.org/about-us/).
+<img src="../../images/Bonsai.png" alt="drawing" width="150"/><br>
 
-Among many applications in behavior measurement, it can be used for live video tracking, e.g. to trigger a Bpod state change based on the test subject's position in an arena.
+[Bonsai](https://bonsai-rx.org/) is an open source software tool for processing data streams, developed by [Goncalo Lopes](https://neurogears.org/about-us/). Among many applications in behavior measurement, it is most often used with Bpod for visual stimulus display, and for live video tracking, e.g. to trigger a Bpod state change based on the test subject's position in an arena.
 
 Two methods exist to integrate Bpod with Bonsai, depending on your state machine model and firmware:
 

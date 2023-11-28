@@ -42,6 +42,7 @@ nav:
     - install-and-update/firmware-repo-list.md
     - install-and-update/firmware-update.md
   - MATLAB Software:
+    - user-guide/index.md
     - Setup:
       - install-and-update/installing-bpod.md
       - install-and-update/software-update.md
