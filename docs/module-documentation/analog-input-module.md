@@ -22,8 +22,8 @@ Where COM3 is the analog input module's serial port.
 
 The Analog Input device is controlled in 2 ways:
 
-- Setting the BpodWavePlayer object's fields
-- Calling the BpodWavePlayer object's functions
+- Setting the BpodAnalogIn object's fields
+- Calling the BpodAnalogIn object's functions
 
 ## Object fields
 
