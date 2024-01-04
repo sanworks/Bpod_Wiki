@@ -1,44 +1,31 @@
 # Serial message setup
-When building a state machine, the output action {"SerialX", N} will trigger the byte(s) contained in N to be sent to the "SerialX" module or port. These output actions are usually manually defined when building each state of the state machine.
+The state machine can send command bytes to trigger operations on connected Bpod modules. To send bytes on entering a specific state, add the following the state's [output actions](/function-reference/state-machine-creation/#addstate): {"MyModule", N}. This will send the byte(s) contained in N from the state machine to the module named "MyModule". N can be a single byte, or an array of bytes. The maximum array size is 3 bytes (State Machine r0.5-r1) or 5 bytes (State Machine r2, r2.5, r2+).
 
-Before defining a state machine, it may be useful to *predefine* one or more serial messages for a particular module or serial port by loading them ahead of time. Mapping commands to integers can help if there are a large number of potential commands or  commands you may need to multiple times.
+A list of module names (e.g. MyModule) and other output channel names can be found in the system properties panel, accessed via the magnifying glass icon on the [Bpod console](/user-guide/bpod-gui/).
 
-Messages to be sent from the state machine to its modules are stored in a library onboard the state machine. The library can be explicitly programmed with `LoadSerialMessages()`.
-
-For Example, the commands on the right can be sent using the integers on the left once loaded:
-
-- 1 -> Command 1
-- 2 -> Command 2
-- 3 -> ['A']
-- 4 -> [64 54]
-
-The output action __{"SerialX", 1}__ would send "Command 1" to SerialX
-
-The output action __{"SerialY", 4}__ would send [65 54] to SerialY
+Messages to be sent from the state machine to its modules are stored in a library onboard the state machine, and addressed by index. The library can be [implicitly programmed](/function-reference/serial-message-setup/#implicit-serial-messages) by inserting multi-byte messages directly into the output actions section of a state. It is possible to reduce processing time by explicitly progreamming the library with [LoadSerialMessages()](/function-reference/serial-message-setup/#loadserialmessages).
 
 !!! note
-    If alternative serial messages are loaded for one module, they must be loaded for all modules. Otherwise, the Bpod will revert to sending the raw byte(s) *N* (e.g. 1, 2, 3, etc.) instead of the loaded commands.
+    If implicit serial messages are used to program one module in a protocol, they must be used for all modules. When using implicit messages, states referring to message indexes set up with LoadSerialMessages() will send out the index instead of the message content.
 
-Each integer can be set to represent 1-3 bytes. 
-
-Like other output actions, the serial messages are released when the state begins.
+Like other output actions, serial messages are sent from the state machine to the target modules on entering the state where the message is described.
 
 ### `LoadSerialMessages()`
 **Description**
 
-This function loads user-defined byte strings and associates them with an integer for the provided UART serial channel.
+This function loads a library of user-defined byte strings for each Bpod module, to be addressed by index.
 
 **Syntax**
 
 ```matlab
-Acknowledged = LoadSerialMessages(SerialPort, Messages, [MessageIndexes])
+Acknowledged = LoadSerialMessages(ModuleName, Messages, [MessageIndexes])
 ```
 
 **Parameters**
 
-- SerialPort: The UART serial port number (1-2 on Bpod 0.5, 1-3 on Bpod 0.7, 1-5 on Bpod 2.X)
-    - If a recognized Bpod module is connected to a port, you can also use its name as a string (e.g. 'ValveModule1')
-    - You can also use the name 'SerialX', where X is the UART serial port number (e.g. 'Serial4')
+- ModuleName: The name (or index) of the target Bpod module that will receive the messages
+    - If a recognized Bpod module is connected to a port, you can provide its name as a string (e.g. 'ValveModule1')
+    - For modules that do not self-describe to the state machine, use the index of the module port (e.g. 2 for module port 2)
 - Messages: A cell array of messages
     - *{Message1, Message2, etc.}*
 - (optional) MessageIndexes: A list of indexes for the byte strings in the Messages argument.
@@ -53,15 +40,15 @@ Acknowledged = LoadSerialMessages(SerialPort, Messages, [MessageIndexes])
 
 **Examples**
 
-Example 1: Loads [5 8] as message #1, and [2 3 4] as message #2 on UART serial port 1
+Example 1: Loads ['P' 3] as message #1, and 'X' as message #2 addressed to the device on module port 1
 ```matlab
-LoadSerialMessages(1, {[5 8], [2 3 4]});
+LoadSerialMessages(1, {['P' 3], 'X'});
 ```
 
 
-Example 2: Loads ['X' 3] as message #8 on UART serial port 3 
+Example 2: Loads ['P' 3] as message #8 addressed to the HiFi module
 ```matlab
-LoadSerialMessages(3, ['X' 3], 8); 
+LoadSerialMessages('HiFi1', ['P' 3], 8);
 ```
 
 ### `ResetSerialMessages()`
@@ -90,17 +77,17 @@ Acknowledged = ResetSerialMessages()
 **Example**
 
 ```matlab
-% Loads ['X' 3] as message  #7 on UART serial port 3 
-LoadSerialMessages(3, ['X' 3], 7); 
+% Loads ['X' 3] as message  #7 on module port 3
+LoadSerialMessages(3, ['X' 3], 7);
 
 % Resets message #7 to '7', and message #N to 'N' (default) as on all serial ports
-ResetSerialMessages; 
+ResetSerialMessages;
 ```
 
 ### Implicit serial messages
 **Description**
 
-As of Bpod Console v1.70 and Bpod Firmware v23, serial messages can be added implicitly in the state description.
+As of Bpod Console v1.70 and Bpod Firmware v23, serial messages can be added implicitly in the state description. This obviates the need for LoadSerialMessages() and makes the protocol code more human-readable.
 
 **Example**
 
