@@ -5,7 +5,7 @@
 ### `NewStateMachine()`
 **Description**
 
-Creates a new, empty state machine.
+Creates a new, empty state machine description.
 
 States can be added to the empty state machine description with the `AddState()` function. The state machine description returned is a struct with 21 subfields:
 
@@ -59,7 +59,7 @@ sma = AddState(sma, 'Name', 'MyState', ...
 ### `AddState()`
 **Description**
 
-Adds a state to an existing state machine.
+Adds a state to an existing state machine description.
 
 **Syntax**
 
@@ -124,7 +124,7 @@ sma = AddState(sma, 'Name', 'LightPort3', ...
 ### `EditState()`
 **Description**
 
-Edits a state in an existing state machine.
+Edits a state in an existing state machine description.
 
 **Syntax**
 

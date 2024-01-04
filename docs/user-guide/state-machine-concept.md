@@ -13,7 +13,7 @@ Here is a simple finite state machine, describing a binary switch that controls 
 stateDiagram
 direction LR
 onstate: On state\nBrightness 100
-offstate: On state\nBrightness 0
+offstate: Off state\nBrightness 0
 onstate --> offstate: Switched off
 offstate --> onstate: Switched on
 ```
@@ -23,8 +23,8 @@ offstate --> onstate: Switched on
 Here is the same diagram presented as a Bpod state machine description:
 
 ```matlab
-sma = NewStateMatrix();   % Initializes a new, empty state machine
-                          % description struct called "sma".
+sma = NewStateMachine();   % Initializes a new, empty state machine
+                           % description struct called "sma".
 
 % Now add a new state called "OnState" to the description.
 % When the state's timer elapses, the resulting event
@@ -41,6 +41,10 @@ sma = AddState(sma, 'Name', 'OffState', ...
     'StateChangeConditions', {'Tup', 'OnState'},...
     'OutputActions', {'PWM1', 0});
 ```
+
+Additional example Bpod state machine descriptions are given [here](https://github.com/sanworks/Bpod_Gen2/tree/master/Examples/State%20Machines).
+
+Also see the [State Machine Creation](../../function-reference/state-machine-creation/) page for NewStateMachine() and AddState() function documentation.
 
 <!-- ## Modules
 

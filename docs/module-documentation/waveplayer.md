@@ -26,8 +26,12 @@ The BpodWavePlayer device is controlled in 2 ways: 
 - Info
     - A struct containing the connected module's firmware and hardware versions
 - SamplingRate (Hz)
-    - 1Hz-10kHz, affects all channels. 
-    - Can be set beyond 10kHz, up to to 20kHz, automatically disabling channels 3-4.
+    - 1Hz-100kHz, affects all channels. 
+    - When using hardware v1, channels are disabled when sampling above 30kHz as follows:
+      - 30kHz: Ch5-8 disabled (8-channel model only)
+      - 50kHz: Ch3-8 disabled
+      - 100kHz: Ch2-8 disabled
+    - Hardware v2 can sample at 100kHz with all channels active.
 - OutputRange (String)
     - A string specifying voltage output range for all channels: 
         - '0V:5V'
