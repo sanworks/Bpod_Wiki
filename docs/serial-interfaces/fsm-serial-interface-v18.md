@@ -210,7 +210,7 @@ The command bytes are:
     - for each state between 1 and nStates
         - globalCounterReset(1-byte). _Defines the index of the global counter to reset in each state._
     - _NOTE: The next section of the state machine description expects a different datatype for several variables, depending on how many global timers are supported by the state machine: byte (if < 9), 16-bit unsigned int (if < 17), 32-bit unsigned int (otherwise, up to 32). This compression allows Bpod firmware to support state machine versions with less internal memory._
-    * if nGlobalTimers < 9 Note: _nGlobalTimers was received with the state machine hardware description; (see 'H' above)._
+    - if nGlobalTimers < 9 Note: _nGlobalTimers was received with the state machine hardware description; (see 'H' above)._
         - for each state between 1 and nStates
             - globalTimerTrig (1-byte). _Bits of globalTimerTrig indicate the global timers to trigger in each state_
         - for each state between 1 and nStates
@@ -231,8 +231,7 @@ The command bytes are:
             - globalTimerCancel (2-byte; 32-bit unsigned int). _Bits of globalTimerTrig indicate the global timers to cancel in each state_
             - for each global timer between 1 and nGlobalTimersUsed _(nGlobalTimersUsed was received earlier in the transmission)_
                 - globalTimerOnsetTriggers (2-byte; 32-bit unsigned int) _Bits of globalTimerOnsetTriggers indicate other global timers to trigger after the current timer's onset delay._
-    * end if
-
+    - end if
         - for each state s between 1 and nStates
             - stateTimer\[s\] (4 bytes; 32-bit int). _This state's internal timer (units = state machine cycles, 1 cycle = timerPeriod returned from 'H' above)._
         - for each global timer t between 1 and nGlobalTimersUsed _(nGlobalTimersUsed was received earlier in the transmission)_
@@ -244,7 +243,8 @@ The command bytes are:
     - for each global counter between 1 and nGlobalCountersUsed _(nGlobalCountersUsed was received earlier in the transmission)_
             - globalCounterThreshold\[t\] (4 bytes; 32-bit int). _Threshold (units = instances of the event being counted)._
     - NOTE: The state machine will return a confirmation byte to indicate successful transmission of the state machine description, on the next call to RunStateMachine. This saves 1 read/write cycle, and reduces dead-time.
-- **'R'** (ASCII 82): **Run state machine.**
+
+- '**R**' (ASCII 82): **Run state machine.**
     - if a new state machine was sent prior to calling 'R'
     - The state machine returns a byte (1) to confirm that it has finished receiving the new state machine.
     - The state machine returns TrialStartTimestamp (8 bytes; 64-bit unsigned int). _Time in microseconds since session start_
@@ -268,6 +268,6 @@ The command bytes are:
 - '**X**' (ASCII 88): **Force-exit the currently running state machine, and return the partial trial's data**.
     - No data follows.
     - The state machine then returns the data in same format as for 'R' command above.
-    **'Z'** (ASCII 90): **Disconnect state machine from the USB serial port**.
+- **'Z'** (ASCII 90): **Disconnect state machine from the USB serial port**.
     - No data follows.
     - This resets several program variables to prepare the state machine for its next connection
