@@ -22,7 +22,7 @@ The state machine command interface consists of bytes sent from the Bpod state m
         - Byte 1: A byte whose bits indicate which channels to trigger (i.e. byte 5 = bits: 101 = channels 1 and 3).
         - Byte 2: A byte indicating the waveform to play on the channels specified by Byte 1. NOTE: This byte uses 0-indexing.
     - In trigger profile mode, 'P' (byte 0) must be followed by 1 byte:
-        - Byte 1: The trigger profile to play (1-64)
+        - Byte 1: The trigger profile to play. This byte uses 0-indexing (0-63).
 - '**>**' (ASCII 62): **Plays a list of waveforms specified for each channel**
     - REQUIRES FIRMWARE v5 OR NEWER
     - '>' (byte 0) must be followed by one byte for each output channel on the device.
