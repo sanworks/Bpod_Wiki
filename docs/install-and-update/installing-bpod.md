@@ -3,10 +3,11 @@ This section details installing the Bpod software on the governing computer, and
 
 ## Windows 10 or 11
 ### Requirements
-1. Windows 10 or 11
-2. 8GB+ RAM
-3. Preferably a 2.5GHz+ multi-core CPU (i.e. intel corei5/i7 series).
-4. MATLAB r2013a or newer.
+1. OS: Windows 10 or 11, professional edition
+2. CPU: intel corei5/i7 11th gen or newer recommended
+3. RAM: 16GB minimum
+4. HDD: Solid state hard drive strongly recommended
+5. MATLAB: r2013a or newer.
 
 ### Download
 If you do not want to use [version control](https://en.wikipedia.org/wiki/Version_control), you can download Bpod software as a .zip from [here](https://github.com/sanworks/Bpod_Gen2/archive/refs/heads/master.zip).
@@ -58,7 +59,7 @@ If all went well, this should copy the latest Bpod software to your computer.
 ## Ubuntu Linux
 These are instructions for setting up Bpod on a computer running Ubuntu
 
-We recommend at least an Intel Corei5 processor and 8GB of RAM.
+We recommend at least a 11th generation Intel Corei5 processor and 16GB of RAM.
 
 This tutorial assumes you have loaded Bpod's firmware if you self-assembled the state machine.
 
