@@ -48,8 +48,10 @@ The SerialUSB command interface allows configuration of the HiFi module from MAT
 - '**L**' (ASCII 76): **Load an audio waveform**. 'L' (byte 0) is followed by:
     - Byte 1: The waveform to load (0-19). Note: In the HiFiModule class, these are corrected for MATLAB's indexing (1-20).
     - Byte 2: isStereo (set to 1 if loading a stereo/2ch waveform, or 0 if mono/1ch). Note: Both speakers play mono waveforms.
-    - Bytes 3 - 6: The number of samples in the audio waveform expressed as a 32-bit integer (1-1,000,000).
-    - Bytes 7 - (7+((2 + (2\*isStereo))\*nSamples)): The waveform. Each byte is a 16-bit signed integer coding for an audio sample.
+    - Byte 3: loopMode (set to 1 to loop the audio waveform for a fixed duration, 0 for single-shot playback).
+    - Bytes 4 - 7: The duration to play the looped waveform in loop mode, expressed as a 32-bit integer. Units = samples.
+    - Bytes 8 - 11: The number of samples in the audio waveform expressed as a 32-bit integer (1-1,000,000).
+    - Bytes 12 - (12+((2 + (2\*isStereo))\*nSamples)): The waveform. Each pair of bytes is a 16-bit signed integer encoding an audio sample.
     - The HiFi module returns a byte (1) to confirm that it has finished reading the last sample.
 - '**S**' (ASCII 83): **Set sampling rate** (units = Hz). 'S' (byte 0) is followed by:
     - Bytes 1-4: Sampling rate in hz (32-bit unsigned integer)
