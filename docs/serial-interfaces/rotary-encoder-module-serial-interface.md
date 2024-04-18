@@ -8,18 +8,18 @@ The Rotary Encoder Module must be connected to a free serial port on the Bpod st
 
 !!! important
     There are two versions of the Rotary Encoder Module with non-overlapping feature sets. Both modules are controlled by the `RotaryEncoderModule` class. Functions specific to each version are indicated with:
-    
+
     - Module v1 only: :one:
-    
+
     - Module v2 only: :two:
 
 ## State Machine Command Interface
 - Byte **255** (reserved): Returns module info to state machine
-- '**L**' (ASCII 76):one:: **Start logging position+time data to the microSD card**. 
+- '**L**' (ASCII 76):one:: **Start logging position+time data to the microSD card**.
     - Resets logging position to 0, overwriting previously logged data.
-- '**F**' (ASCII 70):one:: **Finish logging position+time data to the microSD card**. 
+- '**F**' (ASCII 70):one:: **Finish logging position+time data to the microSD card**.
     - Stops logging data. A call to 'R' (see below) must be made to return data to the PC before the next call to 'L'.
-- '**Z**' (ASCII 90): **Set current rotary encoder position to zero**. 
+- '**Z**' (ASCII 90): **Set current rotary encoder position to zero**.
 - '**E**' (ASCII 69): **Enable all position thresholds**.
     - Position thresholds are disabled individually once they are crossed, generating a behavior event. Call 'E' to re-enable all of them.
 - '**O**' (ASCII 79):one:: **Start / Stop module output stream**.
@@ -58,7 +58,7 @@ The SerialUSB command interface allows configuration of the rotary encoder modul
         - ---For firmware v1:---
             - for (each new position)
                 - currentPosition (2 bytes; 16-bit signed int; units = rotary encoder tics (1024 / full rotation)
-                - currentTime (4 bytes; 32-bit unsigned int; units = ms)
+                - currentTime (4 bytes; 32-bit unsigned int; units = µs)
         - ---For firmware v2:---
             - whichData (1 byte):
                 - 'P' (ASCII 80) if position data follows
@@ -66,23 +66,23 @@ The SerialUSB command interface allows configuration of the rotary encoder modul
             - IF 'P' was received (position data):
                 - nPositions (1 byte): number of positions to read
                 - FOR each position in nPositions
-                        - currentPosition (2 bytes; 16-bit signed int; units = rotary encoder tics (1024 / full rotation)
-                        - currentTime (4 bytes; 32-bit unsigned int; units = ms)
+                      - currentPosition (2 bytes; 16-bit signed int; units = rotary encoder tics. Default range is [-512, 512] mapping a full rotation)
+                      - currentTime (4 bytes; 32-bit unsigned int; units = µs)
             - IF 'E' was received (event data):
-                    - eventOrigin (1 byte): 0 if from state machine, 1-3 reserved for events from TTL and I2C
-                    - eventCode (1 byte): For state machine events, the "event" byte that followed '#' (above)
-                        - currentTime (4 bytes; 32-bit unsigned int; units = ms)
+                  - eventOrigin (1 byte): 0 if from state machine, 1-3 reserved for events from TTL and I2C
+                  - eventCode (1 byte): For state machine events, the "event" byte that followed '#' (above)
+                  - currentTime (4 bytes; 32-bit unsigned int; units = µs)
         - ---For firmware v3 or newer:---
             - whichData (1 byte):
                 - 'P' (ASCII 80) if position data follows
                 - 'E' (ASCII 69) if event data follows
             - IF 'P' was received (position data):
                 - currentPosition (2 bytes; 16-bit signed int; units = rotary encoder tics (1024 / full rotation)
-                - currentTime (4 bytes; 32-bit unsigned int; units = ms)
+                - currentTime (4 bytes; 32-bit unsigned int; units = µs)
          - IF 'E' was received (event data):
                 - eventOrigin (1 byte): 0 if from state machine, 1-3 reserved for events from TTL and I2C
                 - eventCode (1 byte): For state machine events, the "event" byte that followed '#' (above)
-                - currentTime (4 bytes; 32-bit unsigned int; units = ms)
+                - currentTime (4 bytes; 32-bit unsigned int; units = µs)
 - '**V**' (ASCII 86): **Enable/Disable event transmission to state machine**. 'V' (byte 0) is followed by:
     - eventsEnabled (1 byte): 0 to disable sending threshold events, 1 to enable.
     - The rotary encoder module returns a byte (1) to confirm that it has finished enabling/disabling events.
@@ -101,13 +101,18 @@ The SerialUSB command interface allows configuration of the rotary encoder modul
     - for (each threshold between 0 and nThresholds)
         - thresholdTimes (32-bit unsigned integer): Time for thresholdType1 (unit = increments of 100 microseconds)
 - '**W**' (ASCII 87): **Set wrap point (number of tics in a half-rotation)**. 'W' (byte 0) is followed by:
-    - Bytes 1-2: a 16-bit signed integer indicating the wrapPoint.
-        - units = rotary encoder tics (512 / half rotation).
-            - wrapPoint is the point at which the lowest permissible negative position is wrapped to the highest permissible positive position.
-                - At 512 (default), position wraps from -512 to +512 (for a total of 1024 tics per rotation).
-                - At 1024, two full rotations are required in either direction to wrap the current position (i.e. positions between -1024 and +1024 are permissible).
-                - wrapPoint can be used to allow thresholds more distant than 1 rotation away from the start point (position 0).
-    - The rotary encoder module returns a byte (1) to confirm that it has finished setting the wrapPoint.
+    - Bytes 1-2: a 16-bit signed integer indicating the wrap point.
+        - units = rotary encoder positions.
+        - wrapPoint is the point at which the lowest permissible negative position is wrapped to the highest permissible positive position.
+        - If set to 512 (default), position wraps from -512 to +512 (for a total of 1024 tics per rotation).
+        - IF set to 1024, two full rotations are required in either direction to wrap the current position (i.e. positions between -1024 and +1024 are permissible).
+        - wrapPoint can be used to allow thresholds more distant than 1 rotation away from the start point (position 0).
+    - The rotary encoder module returns a byte (1) to confirm that it has finished setting the wrap point.
+- '**M**' (ASCII 87): **Set wrap mode (signed or unsigned position boundaries of a full rotation)**. 'M' (byte 0) is followed by:
+    - Byte 1: a byte encoding the wrap mode:
+        - 0: bipolar (positions can be negative, return to -1*wrapPoint after a full rotation)
+        - 1: unipolar (positions are always positive, return to 0 after a full rotation)
+    - The rotary encoder module returns a byte (1) to confirm that it has finished setting the wrap mode.
 - '**I**' (ASCII 73):one:: **Set 1-character prefix for module output stream**. 'I' (byte 0) is followed by:
     - prefix (1 byte): a prefix-byte sent before each 16-bit position in the output data stream
         - The prefix should match the data format expected by the receiving module
