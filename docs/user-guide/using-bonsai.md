@@ -53,10 +53,12 @@ Notice: The current release should be regarded as an alpha. It works with exampl
 
 <img src="../../images/bonsai-socket-configurator.png" alt="drawing" width="200"/><br>
 
-* Since you are creating the TCP server, you can use custom IP and Port. The defaults work fine.
+* Since you are creating a TCP server, you can set a custom IP and Port if necessary. The defaults work for the examples below.
 
 * Click "Connect".
 
-* In Bonsai, run an application that connects to your IP and Port. An example app is available in /Bpod/Bpod System Files/Plugins/Bonsai/App_SoftCode Example/. To demonstrate use of the app, after connecting to Bonsai, run the soft code example in /Bpod/Bpod System Files/ExampleMatrices: SoftCodeTriggeredStateChange.m. Shifting a bright light across your webcam's field of view from right to left should trigger a state change, visible as a change in port LEDs.
+* In Bonsai, run a workflow that connects to your IP and Port. An example Bonsai workflow is available in /Bpod_Gen2/Functions/Plugins/Bonsai/Bonsai Example TCP/. The example workflow requires Bonsai's "scripting" and "osc" packages. The example worflow sends SoftCode 5 to the Bpod state machine once per second.
 
-* If the connection was initiated successfully, the Bonsai Status should show "Connected" in green.
+* Once the workflow is running, if the connection was initiated successfully, the Bonsai Status in Bpod should show "Connected" in green.
+
+* To demonstrate use of the workflow, after connecting to Bonsai, run the following soft code example: /Bpod_Gen2/Examples/State Machines/USB Soft Codes/SoftCodeTriggeredStateChange.m. The example reacts to Soft Code 5 by changing states. Send the state machine using SendStateMachine(sma), and then run it with RawEvents = RunStateMachine(). Within 1 second, Bonsai should trigger a state change, visible in the Bpod console's "Current State" field, and as a change in port LEDs if behavior ports 1 and 2 are connected. RunStateMachine returns events as event codes. The "magnifying glass" icon on the Bpod console contains the key. Your data should contain Soft Code 5 and its timestamp.
