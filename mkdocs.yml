@@ -94,6 +94,7 @@ nav:
     - serial-interfaces/rotary-encoder-module-serial-interface.md
     - serial-interfaces/valve-module-serial-interface.md
     - serial-interfaces/port-array-module-serial-interface.md
+    - serial-interfaces/smartservo-module-serial-interface.md
     - serial-interfaces/blink-module-serial-interface.md
   - Companion Devices:
     - companion-devices/pulsepal.md

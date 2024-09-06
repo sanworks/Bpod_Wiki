@@ -90,21 +90,20 @@ Play sound #4 using an [ArCOM](http://www.google.com/url?q=http%3A%2F%2Fsites.go
 ```matlab
 D = ArCOMObject('COM3', 115200);
 
-D.write(['P' 3], 'uint8'); % Remember that sound position is 0-indexed!
+D.write(['P' 3], 'uint8'); % Remember that on the Arduino side, sound position is 0-indexed!
 
 clear D
 ```
 
 Trigger sound #4 from the Bpod state machine
 ```matlab
-LoadSerialMessages('HiFi1', {['P' 3]}); % Set serial message 1
 
 sma = NewStateMachine();
 
 sma = AddState(sma, 'Name', 'PlaySound', ...
     'Timer', 0.1,...
     'StateChangeConditions', {'Tup', 'exit'},...
-    'OutputActions', {'HiFi1', 1}); % Sends serial message 1
+    'OutputActions', {'HiFi1', ['P' 3]}); % Plays sound 4
 
 SendStateMachine(sma);
 RawEvents = RunStateMachine;

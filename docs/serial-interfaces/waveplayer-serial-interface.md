@@ -107,7 +107,7 @@ The SerialUSB command interface allows configuration of the WavePlayer module fr
 Play waveform# 4 on output channel 1 from an [ArCOM](http://sites.google.com/site/sanworksdocs/arcom) serial object in MATLAB:
 
 ```matlab
-D = ArCOMObject('COM43', 115200);
+D = ArCOMObject('COM3', 115200);
 D.write(['P' 1 3], 'uint8');
 clear D
 ```
@@ -115,12 +115,11 @@ clear D
 Play waveform# 4 on output channel 1 from the Bpod state machine:
 
 ```matlab
-LoadSerialMessages('WavePlayer1', {['P' 1 3]});  % Set serial message 1
 sma = NewStateMachine();
 sma = AddState(sma, 'Name', 'PlaySound', ...
     'Timer', 0.1,...
     'StateChangeConditions', {'Tup', 'exit'},...
-    'OutputActions', {'WavePlayer1', 1}); % Sends serial message 1
+    'OutputActions', {'WavePlayer1', ['P' 1 3]}); % Note that on the Arduino side, waveforms are 0-indexed!
 SendStateMachine(sma);
 RawEvents = RunStateMachine;
 ```
