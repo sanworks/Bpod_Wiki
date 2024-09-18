@@ -99,6 +99,10 @@ The state machine command interface consists of bytes sent from the Bpod state m
 
 The SerialUSB command interface allows configuration of the SmartServo module from MATLAB or Python before a trial begins. The [SmartServo](../module-documentation/smartservo-module.md) class for Bpod/MATLAB wraps this interface. The first commands are the same as for the state machine interface, and additional commands follow.
 
+**IMPORTANT:** All commands sent by USB must be prefixed by byte **212**, the op menu access byte.
+This shields the module from PC-side applications that spam serial ports with character strings (e.g. the Linux modem manager)
+Commands from the state machine (above) do not require the access byte.
+
 - Byte 249: **Handshake and reset programs**
     - The Smart Servo module returns a byte (250) to confirm that it has finished clearing the motor programs.
 - '**M**' (ASCII 77): **Set Control Mode**.
@@ -109,8 +113,22 @@ The SerialUSB command interface allows configuration of the SmartServo module fr
           - 3: Current-Limited Position [-92160 : 92160 deg]
           - 4: Speed [-Max : Max rev/s] *Max is motor dependent
           - 5: Step [-Inf : Inf deg]
-    - If called from the PC via USB, The Smart Servo module returns a byte (1) to confirm that it has finished setting the control mode.
-
+    - The Smart Servo module returns a byte (1) to the PC, to confirm that it has finished setting the control mode.
+- '**D**' (ASCII 68): **Discover Motors**.
+    - 'D' (byte 0) does not need to be followed by additional bytes.
+    - The PC-side application must wait 1 second for the module to probe for available motors
+    - The module replies with a 6-byte message for each motor found:
+      - Motor Channel (byte 0) The channel on the module (1-3)
+      - Motor Address (byte 1) The address on the channel (1-3)
+      - Motor model (bytes 2-5) A 32-bit unsigned integer indicating the motor model number. Model names can be resolved from a library of model numbers, see MATLAB interface for implementation
+- '**&**' (ASCII 63): **Request version information**.
+    - '&' (byte 0) must be followed by 8 bytes:
+        - Bytes 1-4: Firmware Version (32-bit unsigned int)
+        - Bytes 5-8: Hardware Version (32-bit unsigned int)
+- '**?**' (ASCII 63): **Request module information**.
+    - '?' (byte 0) must be followed by 8 bytes:
+        - Bytes 1-4: Number of motor programs supported (32-bit unsigned int)
+        - Bytes 5-8: Number of steps per motor program supported (32-bit unsigned int)
 
 ## Examples
 
