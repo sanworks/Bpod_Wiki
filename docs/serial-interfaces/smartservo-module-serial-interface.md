@@ -121,7 +121,7 @@ Commands from the state machine (above) do not require the access byte.
       - Motor Channel (byte 0) The channel on the module (1-3)
       - Motor Address (byte 1) The address on the channel (1-3)
       - Motor model (bytes 2-5) A 32-bit unsigned integer indicating the motor model number. Model names can be resolved from a library of model numbers, see MATLAB interface for implementation
-- '**&**' (ASCII 63): **Request version information**.
+- '**&**' (ASCII 38): **Request version information**.
     - '&' (byte 0) must be followed by 8 bytes:
         - Bytes 1-4: Firmware Version (32-bit unsigned int)
         - Bytes 5-8: Hardware Version (32-bit unsigned int)
@@ -129,6 +129,75 @@ Commands from the state machine (above) do not require the access byte.
     - '?' (byte 0) must be followed by 8 bytes:
         - Bytes 1-4: Number of motor programs supported (32-bit unsigned int)
         - Bytes 5-8: Number of steps per motor program supported (32-bit unsigned int)
+- '**%**' (ASCII 37): **Read motor shaft position**.
+    - '%' (byte 0) must be followed by 2 bytes:
+        - Byte 1: Motor channel on the module (1-3)
+        - Byte 2: Motor address on the selected channel (1-3)
+    - The module replies with a 4-byte message:
+        - Bytes 1-4: The motor position (32-bit float, units = degrees)
+- '**L**' (ASCII 76): **Load a motor program to the device**.
+    - '?' (byte 0) must be followed by 3 bytes, plus bytes for each step in the motor program:
+    - Byte 1: The index of the motor program (0-255)
+    - Byte 2: The number of steps in the motor program (0-255)
+    - Byte 3: The movement type contained in the program. 0 = velocity limited, 1 = current limited
+
+    For each step in the motor program:
+
+    - 1 Byte: Target Channel (1-3)
+
+    For each step in the motor program:
+
+    - 1 Byte: Address on Target Channel (1-3)
+
+    For each step in the motor program:
+
+    - 4 Bytes (32-bit float): Goal Position (degrees)
+
+    For each step in the motor program:
+
+    - 4 Bytes (32-bit float): Movement Limit (rev/s or mA depending on byte 3: movement type)
+
+    For each step in the motor program:
+
+    - 4 Bytes (32-bit unsigned int): Step time
+
+    Once:
+
+    - 4 Bytes (32-bit unsigned int): number of times to loop the program after each trigger (0 = no looping)
+    
+    - The Smart Servo module returns a byte (1) to the PC, to confirm that it has finished loading the program.
+
+- '**=**' (ASCII 61): **Set target motor program for each DIO channel**.
+    - '=' (byte 0) must be followed by 3 bytes:
+    - Bytes 1-3: The target motor program for each DIO channel
+    - The Smart Servo module returns a byte (1) to the PC, to confirm that it has finished setting the target programs.
+- '**+**' (ASCII 43): **Set operation for DIO channel rising edge**.
+    - '+' (byte 0) must be followed by 3 bytes:
+    - Bytes 1-3: The rising edge operation (0 = No op, 1 = Start target program, 2 = Stop program, 3 = Emergency stop all motors)
+    - The Smart Servo module returns a byte (1) to the PC, to confirm that it has finished setting the rising edge operation.
+- '**-**' (ASCII 45): **Set operation for DIO channel falling edge**.
+    - '-' (byte 0) must be followed by 3 bytes:
+    - Bytes 1-3: The rising edge operation (0 = No op, 1 = Start target program, 2 = Stop program, 3 = Emergency stop all motors)
+    - The Smart Servo module returns a byte (1) to the PC, to confirm that it has finished setting the falling edge operation.
+- '**~**' (ASCII 126): **Set debounce interval for DIO inputs**.
+    - '~' (byte 0) must be followed by 12 bytes:
+    - Bytes 1-12: The debounce interval (unsigned 32-bit integer, units = multiple of 100-microsecond hardware timer)
+    - The Smart Servo module returns a byte (1) to the PC, to confirm that it has finished setting the debounce interval.
+- '**T**' (ASCII 84): **Read a value from the Dynamixel control table**.
+    - 'T' (byte 0) must be followed by 3 bytes:
+    - Byte 1: Motor channel on the module (1-3)
+    - Byte 2: Motor address on the selected channel (1-3)
+    - Byte 3: The control table address
+    - The module replies with a 4-byte message:
+        - Bytes 1-4: The control table value (32-bit unsigned integer)
+- '**I**' (ASCII 73): **Set the motor address**.
+    - 'I' (byte 0) must be followed by 3 bytes:
+    - Byte 1: Motor channel on the module (1-3)
+    - Byte 2: The target motor address on the selected channel (1-3)
+    - Byte 3: The new motor address on the selected channel (1-3)
+    - The module replies with a 1-byte message:
+        - Byte 1: Confirmation byte (1 if set successfully, 0 if not)
+
 
 ## Examples
 
