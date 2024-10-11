@@ -1,0 +1,8 @@
+h3 code { /* Style the code text in H3 headings */
+    border: 2px solid #ccc; /* Add a border around the inline code (to make function separation more obvious) */
+}
+
+h3 { /* Style the H3 headings */
+    padding-bottom: 8px; /* Add some space below the heading */
+    border-bottom: solid 1px #ccc; /* Add a line beneath the heading */
+}
