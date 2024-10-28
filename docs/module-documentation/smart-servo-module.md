@@ -15,12 +15,11 @@ The smart servo module is controlled in 2 ways:
 - Setting the `SmartServoModule` object's fields
 - Calling the `SmartServoModule` object's functions (its methods)
 
-## Object Fields
+## SmartServoModule Fields
 - **Port**
     - ArCOM USB Serial port object
 - **motor**
-    - An array of SmartServoInterface motor control objects, used to send commands from MATLAB to each motor individually.
-        - SmartServoInterface and its usage is documented below.
+    - An array of [SmartServoInterface](#the-smartservointerface-object) motor control objects, used to send commands from MATLAB to each motor individually.
 - **dioTargetProgram**
     - A 1x3 integer array specifying the target program index for each DIO channel.
         - This links each DIO channel to a motor program, previously loaded to the device with loadProgram()
@@ -41,7 +40,7 @@ The smart servo module is controlled in 2 ways:
     - Debounce interval for DIO channels
         - Adjust if required for mechanical pushbuttons
 
-## Object functions
+## SmartServoModule functions
 - **detectMotors()**
     - Detects any motors that are connected to the smart servo module
     - This is run automatically when the SmartServoModule object is first created, but must be run manually if motors are subsequently added or removed
@@ -101,6 +100,94 @@ The smart servo module is controlled in 2 ways:
     - programIndex = the index of the program to run (1-100)
 
 ## The SmartServoInterface Object
+
+When creating an instance of SmartServoModule with S = SmartServoModule('COM3'), attached motors are automatically detected.
+A SmartServoInterface object for each detected motor is created at:
+```matlab
+S.motor(channel,address)
+```
+The SmartServoInterface is controlled in 2 ways:
+
+- Setting the `SmartServoInterface` object's fields
+    - e.g. ```S.motor(1,2).controlMode = 5```
+- Calling the `SmartServoInterface` object's functions (its methods)
+    - e.g. ```S.motor(1,2).setPosition(50)```
+
+## SmartServoInterface Fields
+
+- **Port**
+    - ArCOM USB Serial port object
+    - Identical to the port created when initializing SmartServoModule
+
+- **controlMode**
+    - The control mode of the motor. Five modes are available:
+      - 1 = Position control
+        - Motor moves to an absolute goal position within the range, respecting max velocity and acceleration
+        - Range = [0, 360], Units = degrees
+      - 2 = Extended position control
+        - Motor moves to an absolute goal position within the range, respecting max velocity and acceleration
+        - Range = [-91800, 91800], Units = degrees
+      - 3 = Current-limited position control
+        - Motor moves to an absolute goal position within the range, respecting max motor current (similar to torque-limiting)
+        - Range = [-91800, 91800], Units = degrees
+      - 4 = Speed control
+        - Motor rotates to maintain the target speed, adjusting torque as necessary
+        - Range = [0, Max], Units = rev/second
+      - 5 = Step mode
+        - Motor moves to a goal position relative to the current position
+        - The motor must be fully stopped when receiving a step command for best results
+        - Range = [-91800, 91800], Units = degrees
+
+## SmartServoInterface Functions
+
+- **stop()**
+    - Stops the motor
+
+- **STOP()**
+    - Pseudo Emergency Stop. This function stops all motors and disables them by setting torque to 0.
+    - While similar to a true emergency stop function, timing of motor stop is not guaranteed. Usage is at your own risk.
+    - After calling STOP(), torque must be re-enabled manually by setting motor(chan,address).controlMode for each motor.
+
+- **setMaxVelocity(maxVelocity)**
+    - Sets the maximum velocity for all subsequent movements
+    - maxVelocity = the maximum velocity (units = rev/s)
+    - The default max velocity is overridden by max velocity defined in steps of motor programs
+
+- **setMaxAcceleration(maxAcceleration)**
+    - Sets the maximum acceleration for all subsequent movements
+    - maxAcceleration = the maximum acceleration (units = rev/s^2)
+
+- **setPosition(newPosition, [maxVelocity], [maxAcceleration], [blocking])**
+    - Sets the goal position to initialize a new movement
+    - newPosition = the goal position (units = degrees)
+    - maxVelocity (optional) = the maximum velocity for this and all subsequent moves (units = rev/s)
+    - maxAcceleration (optional) = the maximum acceleration for this and all subsequent moves (units = rev/s^2)
+    - blocking (optional) = 1 to block the MATLAB interpreter until the movement is complete, 0 if not
+    - setPosition() can only be used in controlMode 1 and 2
+
+- **setCurrentLimitedPos(newPosition, maxCurrent)**
+    - Moves to a target position while drawing at most maxCurrent milliamps of current
+    - maxCurrent = the maximum current (units = mA)
+    - setCurrentLimitedPos() can only be used in controlMode 3
+
+- **setSpeed(newPosition, speed)**
+    - Sets a fixed speed for motor shaft rotation, adjusting torque as necessary
+    - speed = the rotation speed (units = rev/s, sign indicates direction)
+    - setSpeed() can only be used in controlMode 4
+
+- **step(stepSize)**
+    - Moves to a target position measured with respect to the current position
+    - stepSize = the target position (units = degrees)
+    - The motor must be fully stopped when receiving a step command for best results
+    - step() can only be used in controlMode 5
+
+- **getPosition()**
+    - Returns the current shaft position of the motor
+    - Units = degrees   
+
+- **getTemperature()**
+    - Returns the motor temperature
+    - Units = degrees C
 
 ### Cleanup
 - Clear the `SmartServoModule` object with clear:
