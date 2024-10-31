@@ -20,6 +20,7 @@ nav:
         - assembly/hifi-module-assembly.md
         - assembly/rotary-encoder-module-assembly.md
         - assembly/valve-driver-module-assembly.md
+        - assembly/smartservo-module-assembly.md
         - assembly/port-array-module-assembly.md
         - assembly/dds-module-assembly.md
         - assembly/ethernet-module-assembly.md
