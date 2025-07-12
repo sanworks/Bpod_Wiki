@@ -2,7 +2,7 @@
 
 Bpod's state machine module can be assembled in as little as one hour at a soldering bench. Here's how.
 
-1. Order all parts in the [Bill of Materials](/assembly/state-machine-assembly-0_5/#bill-of-materials)
+1. Order all parts in the [Bill of Materials](#bill-of-materials)
     - These parts can be purchased from commercial suppliers with two exceptions:
         - The printed circuit board. We have previously used [JLCPCB](https://jlcpcb.com/) as follows:
             - Select 'Add GERBER file'. From the [Bpod-CAD](https://github.com/sanworks/Bpod-CAD) repository, use \\PCB\\BpodStateMachine\\r0.5\\Bpod GERBER.zip
@@ -25,7 +25,7 @@ Bpod's state machine module can be assembled in as little as one hour at a solde
     - Solder
 
 ## Assembly Instructions
-Before assembly, ensure that you have all parts specified in the [Bill of Materials](/assembly/state-machine-assembly-0_5/#bill-of-materials) in appropriate quantities. You will also need a soldering iron, solder, wire cutters, a wet soldering sponge, a small Phillips head screwdriver, and about one hour if this is your first time building a Bpod State Machine.
+Before assembly, ensure that you have all parts specified in the [Bill of Materials](#bill-of-materials) in appropriate quantities. You will also need a soldering iron, solder, wire cutters, a wet soldering sponge, a small Phillips head screwdriver, and about one hour if this is your first time building a Bpod State Machine.
 
 If you are new to soldering a circuit board with ICs, see [this < 2-minute video tutorial](https://www.youtube.com/watch?v=VgcPxdnjwt4) for power-tips.
 

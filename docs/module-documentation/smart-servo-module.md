@@ -2,7 +2,7 @@
 
 ## Description
 
-SmartServoModule interfaces MATLAB with the [Bpod Smart Servo Module](../assembly/smart-servo-module-assembly.md). Each smart servo module interfaces up to 9 additional Dynamixel [X-series](https://www.robotis.us/x-series/) servos with the Bpod State Machine.
+SmartServoModule interfaces MATLAB with the [Bpod Smart Servo Module](../assembly/smartservo-module-assembly.md). Each smart servo module interfaces up to 9 additional Dynamixel [X-series](https://www.robotis.us/x-series/) servos with the Bpod State Machine.
 
 A `SmartServoModule` object is initialized with the following syntax:
 ```matlab

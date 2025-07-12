@@ -69,7 +69,7 @@ end
 
 Stores session data as a `struct`.
 
-- Typically stores the output of [`AddTrialEvents`](#addtrialevents) and other data added as subfields.
+- Typically stores the output of [`AddTrialEvents`](./running-statemachine.md#addtrialevents) and other data added as subfields.
 - Can be saved automatically with the `SaveBpodSessionData` function.
 
 **Example**

@@ -44,7 +44,7 @@ sma = AddState(sma, 'Name', 'OffState', ...
 
 Additional example Bpod state machine descriptions are given [here](https://github.com/sanworks/Bpod_Gen2/tree/master/Examples/State%20Machines).
 
-Also see the [State Machine Creation](../../function-reference/state-machine-creation/) page for NewStateMachine() and AddState() function documentation.
+Also see the [State Machine Creation](../function-reference/state-machine-creation.md) page for NewStateMachine() and AddState() function documentation.
 
 <!-- ## Modules
 

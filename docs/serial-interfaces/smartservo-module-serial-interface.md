@@ -97,7 +97,7 @@ The state machine command interface consists of bytes sent from the Bpod state m
 
 ## SerialUSB Command Interface
 
-The SerialUSB command interface allows configuration of the SmartServo module from MATLAB or Python before a trial begins. The [SmartServo](../module-documentation/smartservo-module.md) class for Bpod/MATLAB wraps this interface. The first commands are the same as for the state machine interface, and additional commands follow.
+The SerialUSB command interface allows configuration of the SmartServo module from MATLAB or Python before a trial begins. The [SmartServo](../module-documentation/smart-servo-module.md) class for Bpod/MATLAB wraps this interface. The first commands are the same as for the state machine interface, and additional commands follow.
 
 **IMPORTANT:** All commands sent by USB must be prefixed by byte **212**, the op menu access byte.
 This shields the module from PC-side applications that spam serial ports with character strings (e.g. the Linux modem manager)
