@@ -28,3 +28,32 @@ ValveTimes = GetValveTimes(20, [1 3]);
 LeftValveTime = ValveTimes(1); 
 RightValveTime = ValveTimes(2);
 ```
+
+### `BpodLiquidCalibration()`
+**Description**
+
+Command Window function to allow users to interact with the liquid calibration.
+Allows users to initialise calibration of the [Port Array Module](../serial-interfaces/port-array-module-serial-interface.md).
+
+**Syntax**
+```matlab
+BpodLiquidCalibration(operation, _)
+```
+
+**Parameters**
+
+- operation: what action to perform
+    - 'calibrate': launch a calibrator, optionally specify 'portarray' after 'calibrate' to launch port array calibrator.
+    - 'getvalvetimes': equivalent to [`GetValveTimes()`](#getvalvetimes)
+
+**Returns**
+
+ValveTimes_s if operation was 'getvalvetimes'.
+
+**Examples**
+
+```matlab
+% Initialise calibration of liquid calibration user interface
+% for Port Array Module
+BpodLiquidCalibration calibrate portarray
+```
