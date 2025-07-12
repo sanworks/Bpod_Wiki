@@ -49,6 +49,7 @@ nav:
     - Operation:
       - user-guide/state-machine-concept.md
       - user-guide/bpod-gui.md
+      - user-guide/multi-setup.md
     - Programming:
       - user-guide/protocol-development.md
       - Function Reference: # IMPORTANT NOTE: New functions are not automatically added to the function-reference/index.md page!
