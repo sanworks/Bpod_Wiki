@@ -1,0 +1,11 @@
+[project]
+name = "bpod-wiki"
+version = "0.1.0"
+description = "Bpod_Gen2's wiki"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "mkdocs>=1.6.1",
+    "mkdocs-material>=9.6.21",
+    "click<=8.2.1",            # pinned to maintain auto-update (https://github.com/squidfunk/mkdocs-material/issues/8478)
+]
