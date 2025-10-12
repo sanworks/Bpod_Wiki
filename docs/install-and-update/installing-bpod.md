@@ -52,7 +52,7 @@ If all went well, this should copy the latest Bpod software to your computer.
     Arduino Due detected.
     To use this device with MATLAB, install MATLAB Support Package for Arduino Hardware.
     ```
-    DO NOT install the Arduino support package and definitely do not overwrite the state machine firmware! Bpod firmware communicates with MATLAB via MATLAB's built-in [serialport](https://au.mathworks.com/help/matlab/ref/serialport.html) interface.
+    DO NOT install the Arduino support package and definitely do not overwrite the state machine firmware[^1]! Bpod firmware communicates with MATLAB via MATLAB's built-in [serialport](https://au.mathworks.com/help/matlab/ref/serialport.html) interface.
 
 [^1]: State machines purchased from the Sanworks Assembly Surface come with firmware pre-installed
 
