@@ -21,7 +21,7 @@ The state machine command interface consists of bytes sent from the Bpod state m
         - state (1 byte; range = 0-1) Note: 0 = closed, 1 = open
 - '**B**' (ASCII 66): **Set the state of all valves at once, using bits of a byte**
     - Following 'B', the module expects 1 byte:
-        - valveState (1 byte; range = 0-15) Note: 0 = all cosed, 15 = all open
+        - valveState (1 byte; range = 0-15) Note: 0 = all closed, 15 = all open
 - '**P**' (ASCII 80): **Set port LED intensity (pulse width modulated)**.
     - Following 'P', the module expects 2 bytes:
         - port# (1 byte; range = 0-3)

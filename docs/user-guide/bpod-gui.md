@@ -116,7 +116,10 @@ If the Bpod software can not connect to a Bpod device, it can be run in Emulator
 - Currently, only the state machine's onboard channels are supported. If your protocol depends on Bpod modules or other external hardware, you will have to run your protocol with the hardware present.
 
 ## Liquid calibration
-Solenoid valves connected to each behavior port (we recommend [these](http://www.google.com/url?q=http%3A%2F%2Fwww.theleeco.com%2Felectro-fluidic-systems%2Fsolenoid-valves%2Flhd%2Fsoft-tube-ported-style.cfm&sa=D&sntz=1&usg=AOvVaw1w0EV-e7R4MRGhzhhuY39h) for their fast action) can gate the gravity flow of liquid reward from an elevated reservoir to the test subject below. When writing your protocol, you might want to deliver a 5µl of liquid reward to a mouse - but how long should you open the valve to achieve this? The `GetValveTimes()` function will solve this for you, by reading from a calibration curve you create. Here's how to create and manage calibration curves:
+Solenoid valves connected to each behavior port (we recommend [these](http://www.google.com/url?q=http%3A%2F%2Fwww.theleeco.com%2Felectro-fluidic-systems%2Fsolenoid-valves%2Flhd%2Fsoft-tube-ported-style.cfm&sa=D&sntz=1&usg=AOvVaw1w0EV-e7R4MRGhzhhuY39h) for their fast action) can gate the gravity flow of liquid reward from an elevated reservoir to the test subject below.
+When writing your protocol, you might want to deliver a 5µl of liquid reward to a mouse - but how long should you open the valve to achieve this?
+The `GetValveTimes()` function will solve this for you, by reading from a calibration curve you create.
+Here's how to create and manage calibration curves:
 
 <!-- ### Step 1. Launch the calibration manager -->
 <!-- Original wiki has no step 2 heading -->
@@ -124,6 +127,9 @@ Solenoid valves connected to each behavior port (we recommend [these](http://www
 - From the [Bpod console](#bpod-console), click "Settings" (wrench icon). You will see a settings menu:
 
 <img src="../../images/console-settings-menu.png" alt="drawing" width="300"/><br><br>
+
+!!! note
+    You can also use [`BpodLiquidCalibration()`](../function-reference/liquid-calibration.md#bpodliquidcalibration) to start liquid calibration, including for the [Port Array Module](../serial-interfaces/port-array-module-serial-interface.md).
 
 - Next, click "Liquid reward calibration" (the faucet icon on the far left)
 - You should now see the calibration manager:
@@ -147,15 +153,39 @@ Solenoid valves connected to each behavior port (we recommend [these](http://www
 
 ## Bpod files
 
+=== "Standard configuration layout"
 
-```
-Bpod Local/ # Contains user-specific files like protcols, calibrations, saved data
-    Calibration files/
-    Data/
-    Protocols/
-    Settings/    # Bpod saves
-Bpod_Gen2/    # Contains files required for Bpod to run
-```
+    ```
+    Bpod_Gen2/
+    Bpod Local/
+    ├─ Data/
+    ├─ Protocols/
+    ├─ Config/
+    │  ├─ LiquidCalibration.json
+    │  ├─ SoundCalibration.mat
+    │  ├─ BpodSettings.mat
+    │  ├─ InputConfig.mat
+    │  ├─ ModuleUSBConfig.mat
+    │  ├─ SyncConfig.mat
+    ```
+
+=== "Legacy configuration layout"
+
+    Default layout in <=1.8.1
+    ```
+    Bpod_Gen2/
+    Bpod Local/
+    ├─ Data/
+    ├─ Protocols/
+    ├─ Calibration Files/
+    │  ├─ LiquidCalibration.json
+    │  ├─ SoundCalibration.mat
+    ├─ Settings/
+    │  ├─ BpodSettings.mat
+    │  ├─ InputConfig.mat
+    │  ├─ ModuleUSBConfig.mat
+    │  ├─ SyncConfig.mat
+    ```
 
 !!! note
     The default location for the 'Bpod Local' folder is in same folder where 'Bpod_Gen2' is located.
