@@ -355,6 +355,10 @@ end
 ```
 
 ### `SideOutcomePlot()`
+
+!!! warning "Deprecated"
+    No longer receiving active updates.
+
 **Description**
 
 Plots correct sides and trial outcomes for a two-sided decision task.
@@ -432,6 +436,11 @@ end
 ```
 
 ### `TrialTypeOutcomePlot()`
+
+!!! warning "Deprecated"
+    No longer receiving active updates.
+
+
 **Description**
 
 Plots trial types and trial outcomes for a customizable window of trials surrounding the current trial.
